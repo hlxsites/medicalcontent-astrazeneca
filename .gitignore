@@ -2,3 +2,5 @@
 coverage/*
 logs/*
 node_modules/*
+.cache/*
+**/helix-webui-importer
