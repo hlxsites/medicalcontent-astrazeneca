@@ -17,8 +17,21 @@ const createRelatedBlock = (main, document) => {
     sections.forEach((section) => {
       const data = [['Related']];
       
-      section.querySelectorAll('.related-section-item .c8-box-link').forEach((item) => {
-        data.push([item]);
+      section.querySelectorAll('.related-section-item .box-link').forEach((item) => {
+        const p = item.querySelector('.box-link-text');
+        if (p) {
+          p.remove();
+        }
+        const img = item.querySelector('img');
+        if (img) {
+          item.before(img);
+        }
+
+        const body = item.querySelector('.box-body');
+        if (body) {
+          item.after(body);
+        }
+        data.push([item.parentNode]);
       });
   
       const table = WebImporter.DOMUtils.createTable(data, document);
@@ -200,6 +213,15 @@ function restructure(main, document) {
   // }
 }
 
+function fixHeadings(main) {
+  const headings = main.querySelectorAll('h1, h2, h3, h4, h5, h6');
+  if (headings) {
+    headings.forEach((heading) => {
+      heading.innerHTML = heading.textContent;
+    });
+  }
+}
+
 export default {
   /**
    * Apply DOM operations to the provided document and return
@@ -221,6 +243,7 @@ export default {
     createMetadata(main, document);
     makeAbsoluteImages(main);
     makeAbsoluteLinks(main);
+    fixHeadings(main);
 
     WebImporter.DOMUtils.remove(main, [
       '.study-page__nav',
