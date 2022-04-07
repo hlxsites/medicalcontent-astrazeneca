@@ -1,4 +1,12 @@
 /* header and nav layout */
+header {
+  font-family: lexia, sans-serif;
+}
+
+header .header {
+  display: none;  
+}
+
 header .nav {
   display: grid;
   grid-template:

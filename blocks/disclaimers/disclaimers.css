@@ -1,0 +1,44 @@
+main .disclaimers {
+  background-color: var(--white);
+  border-radius: 10px;
+  position: relative;
+}
+
+main .disclaimers > div:first-of-type {
+  cursor: pointer;
+}
+
+main .disclaimers h2 {
+  font-size: var(--heading-font-size-s);
+  font-weight: 400;
+  margin: 0;
+}
+
+main .disclaimers .disclaimers-toggle {
+  padding: 40px 30px;
+}
+
+main .disclaimers .disclaimers-toggle::after {
+  position: absolute;
+  color: #D1016F;
+  content: "+";
+  padding-right: 30px;
+  top: 20px;
+  right: 0;
+  font-size: 40px;
+}
+
+main .disclaimers .disclaimers-content {
+  display: none;
+  padding: 30px;
+  font-size: var(--body-font-size-s);
+}
+
+main .disclaimers .disclaimers-content.appear {
+  display: block;
+}
+
+main .disclaimers .disclaimers-content h3 {
+  font-weight: 300;
+  font-size: var(--heading-font-size-m);
+}

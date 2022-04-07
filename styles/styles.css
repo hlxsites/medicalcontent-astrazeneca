@@ -20,34 +20,39 @@
   --text-color: #000;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
-  --heading-font-family: var(var(--body-font-family));
+  --body-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --heading-font-family: lexia, 'Courier New', courier, monospace;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
+  --heading-font-size-xxl: 50px;
   --heading-font-size-xl: 40px;
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
 
+  /* astrazeneca colors */
+  --bg-color: #f7fafc;
+  --fg-color-black: #333;
+  --fg-color-dark-blue: #204194;
+  --fg-color-link: #204194;
+  --graphite-20: #d8dada;
+  --graphite-100: #3c4242;
+  --magenta-100: #d0006f;
+  --magenta-40: #ec99c5;
+  --mulberry-20: #e6ccdc;
+  --purple-20: #d8cfdd;
+  --purple-80: #634075;
+  --purple-100: #3c1053;
+  --white: #fff;
+  --heading-color: #3c4242;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-      --link-color: #15beec;
-      --link-hover-color: #05aedc;
-      --background-color: #000;
-      --overlay-background-color: #ffffff20;
-      --highlight-background-color: #ffffff40;
-      --text-color: #fff;
-  }
-}
 
 html {
   text-rendering: optimizelegibility;
@@ -60,7 +65,7 @@ body {
   font-family: var(--body-font-family);
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--background-color);
+  background-color: var(--bg-color);
   display: none;
 }
 
@@ -69,18 +74,23 @@ body.appear {
 }
 
 header {
-  height: 64px;
+  font-size: 18px;
 }
 
 main {
+  /* background-color: var(--white); */
+  margin: 0 60px;
+  padding: 37px 60px;
   min-height: calc(100vh - 156px);
 }
 
 h1, h2, h3,
 h4, h5, h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  margin-top: 1em;
+  margin-top: 0;
   margin-bottom: .5em;
 }
 
@@ -98,7 +108,6 @@ p, dl, ol, ul, pre, blockquote {
 
 a:any-link {
   color: var(--link-color);
-  text-decoration: none;
 }
 
 a:hover {
@@ -152,7 +161,8 @@ main input:hover {
 }
 
 main .section {
-  padding: 64px;
+  padding: 0;
+  margin: 0 0 20px;
 }
 
 main pre {
@@ -210,10 +220,7 @@ main img {
   
   main {
     min-height: calc(100vh - 212px);
-  }
-
-  .section > div {
-    max-width: 800px;
+    max-width: 1200px;
     margin: auto;
   }
 }

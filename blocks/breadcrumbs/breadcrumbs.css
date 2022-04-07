@@ -1,0 +1,8 @@
+main .breadcrumbs {
+  font-family: var(--heading-font-family);
+  height: 50px;
+}
+
+main .breadcrumbs a:any-link {
+  color: currentcolor;
+}

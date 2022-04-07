@@ -18,7 +18,7 @@ function collapseAllNavSections(sections) {
 
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
-  block.textContent = '';
+  block.textContent = 'Breadcrumbs...';
 
   // fetch nav content
   const navPath = cfg.nav || '/nav';

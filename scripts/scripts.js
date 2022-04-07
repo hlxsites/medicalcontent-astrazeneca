@@ -404,7 +404,12 @@ export function normalizeHeadings(el, allowedHeadings) {
 export function makeLinksRelative(main) {
   main.querySelectorAll('a').forEach((a) => {
     // eslint-disable-next-line no-use-before-define
-    const hosts = ['hlx.page', 'hlx.live', ...PRODUCTION_DOMAINS];
+    const hosts = [
+      'main--medicalcontent-astrazenica--hlxsites.hlx.page',
+      'main--medicalcontent-astrazenica--hlxsites.hlx.live',
+      // eslint-disable-next-line no-use-before-define
+      ...PRODUCTION_DOMAINS,
+    ];
     if (a.href) {
       try {
         const url = new URL(a.href);
@@ -513,7 +518,7 @@ initHlx();
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 const RUM_GENERATION = 'project-1'; // add your RUM generation information here
-const PRODUCTION_DOMAINS = [];
+const PRODUCTION_DOMAINS = ['medicalcontent.astrazeneca.com'];
 
 sampleRUM('top');
 window.addEventListener('load', () => sampleRUM('load'));
@@ -539,11 +544,16 @@ function loadHeader(header) {
   loadBlock(headerBlock);
 }
 
-function loadFooter(footer) {
-  const footerBlock = buildBlock('footer', '');
-  footer.append(footerBlock);
-  decorateBlock(footerBlock);
-  loadBlock(footerBlock);
+function setTheme(doc) {
+  const theme = getMetadata('theme');
+  const $body = doc.body;
+  if (theme) {
+    let themeClass = toClassName(theme);
+    /* backwards compatibility can be removed again */
+    if (themeClass === 'nobrand') themeClass = 'no-desktop-brand-header';
+    $body.classList.add(themeClass);
+    if (themeClass === 'blog') $body.classList.add('no-brand-header');
+  }
 }
 
 /**
@@ -577,6 +587,7 @@ export function decorateMain(main) {
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
+  setTheme(doc);
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -592,7 +603,7 @@ async function loadLazy(doc) {
   await loadBlocks(main);
 
   loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  // loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);

@@ -193,6 +193,15 @@ function createSliderBlock(main, document) {
   }
 }
 
+function createCardsBlock(main, document) {
+  main.querySelectorAll('.studies').forEach((module) => {
+    const data = [['Cards']];
+    data.push([[module.innerHTML]]);
+    const table = WebImporter.DOMUtils.createTable(data, document);
+    module.replaceWith(table);
+  });
+}
+
 function restructure(main, document) {
   // move h1 before first module
   const h1 = main.querySelector('h1');
@@ -243,6 +252,7 @@ export default {
     createMetadata(main, document);
     makeAbsoluteImages(main);
     makeAbsoluteLinks(main);
+    createCardsBlock(main, document);
     fixHeadings(main);
 
     WebImporter.DOMUtils.remove(main, [
