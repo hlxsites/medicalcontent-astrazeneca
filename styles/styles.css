@@ -21,7 +21,7 @@
 
   /* fonts */
   --body-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  --heading-font-family: lexia, 'Courier New', courier, monospace;
+  --heading-font-family: lexia, serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
