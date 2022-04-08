@@ -83,7 +83,7 @@
     font-size: var(--body-font-size-s);
 }
 
-.cards .cards-card-details h2 + p {
+.cards .cards-card-details p {
     clear: left;
 }
 
@@ -130,7 +130,7 @@
 }
 
 @media (min-width: 1200px) {
-    .cards > div {
+    .cards:not(.cards-fifty-fifty) > div {
         width: calc((100% / 3) - 14px);
     }
 }
