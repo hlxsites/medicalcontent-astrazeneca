@@ -1,6 +1,6 @@
 main .breadcrumbs {
   font-family: var(--heading-font-family);
-  height: 50px;
+  margin: 20px 0;
 }
 
 main .breadcrumbs a:any-link {
