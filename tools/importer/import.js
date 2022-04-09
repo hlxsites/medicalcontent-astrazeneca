@@ -9,14 +9,13 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-/* eslint-disable no-console, class-methods-use-this */
+/* eslint-disable no-console, class-methods-use-this, no-undef */
 
 const createRelatedBlock = (main, document) => {
   const sections = main.querySelectorAll('.related-section');
   if (sections) {
     sections.forEach((section) => {
       const data = [['Related']];
-      
       section.querySelectorAll('.related-section-item .box-link').forEach((item) => {
         const p = item.querySelector('.box-link-text');
         if (p) {
@@ -33,12 +32,11 @@ const createRelatedBlock = (main, document) => {
         }
         data.push([item.parentNode]);
       });
-  
       const table = WebImporter.DOMUtils.createTable(data, document);
       section.replaceWith(table);
     });
   }
-}
+};
 
 const makeAbsoluteImages = (main) => {
   main.querySelectorAll('img').forEach((img) => {
@@ -47,16 +45,16 @@ const makeAbsoluteImages = (main) => {
       img.src = u.toString();
     }
   });
-}
+};
 
 const makeAbsoluteLinks = (main) => {
   main.querySelectorAll('a').forEach((a) => {
     if (a.href.startsWith('/')) {
-      const u = new  URL(a.href, 'https://main--medicalcontent-astrazeneca--hlxsites.hlx3.page/');
+      const u = new URL(a.href, 'https://main--medicalcontent-astrazeneca--hlxsites.hlx3.page/');
       a.href = u.toString();
     }
   });
-}
+};
 
 function createMetadata(main, document) {
   const meta = {};
@@ -114,7 +112,7 @@ function createTabBlock(main, document) {
           data.push([btn.textContent, content ? content.innerHTML : '', references ? references.innerHTML : '']);
         });
       }
-      
+
       const table = WebImporter.DOMUtils.createTable(data, document);
       table.querySelector('th').setAttribute('colspan', '3');
       module.replaceWith(table);
@@ -150,7 +148,7 @@ function createAccordionBlock(main, document) {
           data.push([summary ? summary.textContent : '', content ? content.innerHTML : '', references ? references.innerHTML : '']);
         });
       }
-      
+
       const table = WebImporter.DOMUtils.createTable(data, document);
       table.querySelector('th').setAttribute('colspan', '3');
       module.replaceWith(table);
@@ -186,7 +184,7 @@ function createSliderBlock(main, document) {
 
       const content = module.querySelector('.base-module');
       data.push([content ? content.innerHTML : '']);
-      
+
       const table = WebImporter.DOMUtils.createTable(data, document);
       module.replaceWith(table);
     });
@@ -195,8 +193,23 @@ function createSliderBlock(main, document) {
 
 function createCardsBlock(main, document) {
   main.querySelectorAll('.studies').forEach((module) => {
+    module.parentNode.insertBefore(document.createElement('hr'), module);
+    module.parentNode.insertBefore(document.createElement('hr'), module.nextSibling);
     const data = [['Cards']];
-    data.push([[module.innerHTML]]);
+    module.querySelectorAll(':scope > li').forEach((study) => {
+      data.push([[study.innerHTML]]);
+    });
+    const table = WebImporter.DOMUtils.createTable(data, document);
+    module.replaceWith(table);
+  });
+}
+
+function createDisclaimersBlock(main, document) {
+  main.querySelectorAll('.hub-page__constrainer .expander').forEach((module) => {
+    module.innerHTML = `<h2>${module.textContent}</h2>`;
+    const data = [['Disclaimers']];
+    data.push([[...module.children]]);
+    data.push([['']]); // todo: fetch disclaimer content
     const table = WebImporter.DOMUtils.createTable(data, document);
     module.replaceWith(table);
   });
@@ -212,6 +225,11 @@ function restructure(main, document) {
       module.remove();
     }
   }
+
+  // remove dynamic elements
+  document.querySelector('.breadcrumbs')?.remove();
+  document.querySelector('.hero__logo')?.parentNode.remove();
+
   // const modules = main.querySelectorAll('.module');
   // if (modules) {
   //   // create sections
@@ -238,9 +256,8 @@ export default {
    * @param {HTMLDocument} document The document
    * @returns {HTMLElement} The root element
    */
-  transformDOM: (document) => {
+  transformDOM: ({ document }) => {
     const main = document.body;
-
 
     restructure(main, document);
     createRelatedBlock(main, document);
@@ -253,6 +270,7 @@ export default {
     makeAbsoluteImages(main);
     makeAbsoluteLinks(main);
     createCardsBlock(main, document);
+    createDisclaimersBlock(main, document);
     fixHeadings(main);
 
     WebImporter.DOMUtils.remove(main, [
@@ -261,11 +279,10 @@ export default {
       '.header-module__body',
       '.base-module__back-to-top',
       '.header-module__icons',
-      '.study-page__next-prev'
+      '.study-page__next-prev',
     ]);
 
     return main;
-
   },
 
   /**
@@ -274,7 +291,5 @@ export default {
    * @param {String} url The url of the document being transformed.
    * @param {HTMLDocument} document The document
    */
-  generateDocumentPath: (url) => {
-    return new URL(url).pathname.replace(/\/$/, '');
-  },
-}
+  generateDocumentPath: ({ url }) => new URL(url).pathname.replace(/\/$/, ''),
+};
