@@ -64,6 +64,11 @@ function createMetadata(main, document) {
     meta.Title = title.innerHTML.replace(/[\n\t]/gm, '');
   }
 
+  const shortTitle = document.querySelector('h1');
+  if (shortTitle) {
+    meta['short-title'] = shortTitle.textContent.trim();
+  }
+
   const desc = document.querySelector('[name="description"]');
   if (desc) {
     meta.Description = desc.content;
