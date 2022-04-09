@@ -66,12 +66,17 @@ function createMetadata(main, document) {
 
   const shortTitle = document.querySelector('h1');
   if (shortTitle) {
-    meta['short-title'] = shortTitle.textContent.trim();
+    meta['Short Title'] = shortTitle.textContent.trim();
   }
 
   const desc = document.querySelector('[name="description"]');
   if (desc) {
     meta.Description = desc.content;
+  }
+
+  const theme = document.querySelector('#root > div')?.classList.item(0).split('-')[0];
+  if (theme) {
+    meta.Theme = theme;
   }
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
