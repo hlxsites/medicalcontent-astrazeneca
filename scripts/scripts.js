@@ -537,6 +537,12 @@ function buildHeroBlock(main) {
   }
 }
 
+function buildBreadcrumbsBlock(main) {
+  const section = document.createElement('div');
+  section.append(buildBlock('breadcrumbs', { elems: [] }));
+  main.prepend(section);
+}
+
 function loadHeader(header) {
   const headerBlock = buildBlock('header', '');
   header.append(headerBlock);
@@ -562,6 +568,7 @@ function setTheme(doc) {
  */
 function buildAutoBlocks(main) {
   try {
+    buildBreadcrumbsBlock(main);
     buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console

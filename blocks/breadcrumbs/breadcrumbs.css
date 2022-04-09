@@ -6,3 +6,11 @@ main .breadcrumbs {
 main .breadcrumbs a:any-link {
   color: currentcolor;
 }
+
+main .breadcrumbs .breadcrumbs-separator {
+  padding: 8px;
+}
+
+main .breadcrumbs .breadcrumbs-separator::before {
+  content: "|";
+}
