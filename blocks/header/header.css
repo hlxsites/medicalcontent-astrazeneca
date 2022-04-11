@@ -28,7 +28,7 @@ header .nav[aria-expanded='true'] {
 /* hamburger */
 header .nav-hamburger {
   height: 24px;
-  padding-top: 8px;
+  padding-top: 6px;
   cursor: pointer;
 }
 
@@ -180,6 +180,12 @@ header a.nav-item + .nav-section a.nav-item:any-link {
 
 header a.nav-item + .nav-section li {
   font-weight: 400;
+}
+
+@media (min-width: 600px) {
+  header .nav {
+    padding-left: 60px;
+  }
 }
 
 /* desktop nav styles */
