@@ -10,7 +10,7 @@ function collapseAllNavSections(sections) {
   });
 }
 
-function createNavSection(list, navSections) {
+function createNavSection(list, navSections, top) {
   const navSection = document.createElement('div');
   navSection.classList.add('nav-section');
   navSection.append(list);
@@ -23,10 +23,10 @@ function createNavSection(list, navSections) {
       link.classList.add('nav-item-active');
     }
     link.href = `./${safeTitle}`;
-    if (i === 0) {
+    if (top && i === 0) {
       // home link
       link.href = '/';
-    } else if (i === 1) {
+    } else if (top && i === 1) {
       // hub link
       link.href = `/${window.location.pathname.split('/')[1]}`;
     }
@@ -85,7 +85,7 @@ export default async function decorate(block) {
   }
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
-  navSections.append(createNavSection(list, navSections));
+  navSections.append(createNavSection(list, navSections, true));
   nav.append(navSections);
 
   // hamburger for mobile

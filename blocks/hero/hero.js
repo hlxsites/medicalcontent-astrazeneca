@@ -1,6 +1,7 @@
 export default function decorate(block) {
   const heroPic = block.querySelector(':scope picture');
-  if (heroPic) {
+  if (heroPic && heroPic.parentElement.nextElementSibling.tagName === 'H1') {
+    // pic before H1 is considered hero pic
     const heroPicContainer = heroPic.parentElement;
     const picColumn = block.appendChild(document.createElement('div'));
     picColumn.classList.add('hero-picture-container');
