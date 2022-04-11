@@ -14,7 +14,11 @@ main .hero::before {
     height: 39px;
     background-image: url('/icons/astrazeneca.svg');
   }
-  
+
+main .hero-picture-container {
+    display: none;
+}
+
 main .hero h1 {
     font-size: 40px;
     padding-bottom: 20px;
@@ -47,6 +51,46 @@ main .hero .hero-shortcuts a:hover {
     text-decoration: none;
 }
 
+@media (min-width: 1200px) {  
+    main .hero-container.hero-has-image,
+    main .hero-container.hero-has-image .hero {
+        padding: 0;
+    }
+
+    main .hero-container.hero-has-image .hero {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        flex-wrap: nowrap;
+    }
+
+    main .hero-container.hero-has-image .hero::before {
+        left: 90px;
+        top: 30px;
+    }
+
+    main .hero-container.hero-has-image .hero > div:first-child {
+        flex-grow: 1;
+        padding: 90px;
+    }
+
+    main .hero-container.hero-has-image .hero-picture-container {
+        background: #9cb1ac;
+        clip-path: circle(626px at 626px);
+        flex: 0 0 45%;
+        z-index: 1;
+        display: block;
+        min-width: 40%;
+        overflow: hidden
+    }
+
+    main .hero-picture-container img {
+        text-align: right;
+        height: 100%;
+        margin-left: 100px;
+    }
+}
+
 /* theme: hub */
 .hub main .hero {
     border-radius: 0;
@@ -56,6 +100,7 @@ main .hero .hero-shortcuts a:hover {
     top: 0;
 }
 
+.homepage main .hero h1,
 .hub main .hero h1 {
     font-size: 50px;
     font-weight: 400;

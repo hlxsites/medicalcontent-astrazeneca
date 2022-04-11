@@ -50,7 +50,6 @@
   --purple-100: #3c1053;
   --white: #fff;
   --heading-color: #3c4242;
-  --nav-bg-color: var(--white);
 }
 
 
@@ -254,6 +253,7 @@ main .default-content-wrapper h2 {
 
 /* theme: hub */
 
+:root.homepage,
 :root.hub {
   --heading-font-family: var(--accent-font-family);
 }
@@ -277,4 +277,51 @@ main .default-content-wrapper h2 {
     padding-left: 280px;
   }
 
+}
+
+/* theme: homepage */
+.homepage main .default-content-wrapper {
+  text-align: center;
+}
+
+.homepage main .default-content-wrapper ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 20px auto 0;
+}
+
+.homepage main .default-content-wrapper li {
+  width: 100%;
+  display: inline;
+}
+
+.homepage main .default-content-wrapper li a {
+  background: var(--magenta-100);
+  border-radius: 55px;
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: calc(100% - 60px);
+  max-width: 315px;
+  padding: 28px 22px;
+  text-align: left;
+  text-decoration: none;
+}
+
+.homepage main .default-content-wrapper li a:hover {
+  background: var(--fg-color-dark-blue);
+}
+
+@media (min-width: 900px) {
+  .homepage main .default-content-wrapper ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .homepage main .default-content-wrapper li {
+    width: 315px;
+  }
 }
