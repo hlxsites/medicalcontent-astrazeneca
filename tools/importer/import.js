@@ -16,6 +16,10 @@ const createRelatedBlock = (main, document) => {
   if (sections) {
     sections.forEach((section) => {
       const data = [['Related']];
+      const title = section.previousSibling;
+      if (title && title.classList.contains('related-section-title')) {
+        data.push([[title]]);
+      }
       section.querySelectorAll('.related-section-item .box-link').forEach((item) => {
         const p = item.querySelector('.box-link-text');
         if (p) {
@@ -233,6 +237,10 @@ function restructure(main, document) {
     if (module) {
       module.before(h1);
       module.remove();
+    }
+    // section break after h1 on study pages
+    if (document.querySelector('.study-page')) {
+      h1.parentElement.insertBefore(document.createElement('hr'), h1.nextSibling);
     }
   }
 
