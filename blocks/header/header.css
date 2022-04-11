@@ -4,30 +4,37 @@ header {
 }
 
 header .header {
-  display: none;  
+  position: absolute;
 }
 
 header .nav {
-  display: grid;
-  grid-template:
-    "hamburger brand" 64px
-    "sections sections" 1fr / 50px 1fr;
+  font-family: var(--body-font-family);
   align-items: center;
-  padding: 0 2rem;
-  position: fixed;
+  padding: 0 20px;
+  position: absolute;
+  top: 0;
   z-index: 1;
-  background-color: var(--background-color);
-  width: 100vw;
+  width: 64px;
   height: 64px;
   box-sizing: border-box;
+  font-size: 18px;
+}
+
+header .nav[aria-expanded='true'] {
+  min-height: 100vh;
+  background-color: var(--white);
 }
 
 /* hamburger */
 header .nav-hamburger {
-  grid-area: hamburger;
-  height: 22px;
-  padding-top: 3px;
+  height: 24px;
+  padding-top: 8px;
   cursor: pointer;
+}
+
+header .nav[aria-expanded='true'] .nav-hamburger {
+  width: 100vw;
+  background-color: var(--white);
 }
 
 header .nav[aria-expanded='false'] .nav-hamburger-icon,
@@ -84,98 +91,206 @@ header .nav[aria-expanded='true'] .nav-hamburger-icon::after {
   transform: rotate(-45deg)
 }
 
-/* brand */
-header .nav-brand {
-  grid-area: brand;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1em;
-}
-
-header .nav-brand p {
-  margin: 0;
-}
-
 /* sections */
 header .nav-sections {
-  grid-area: sections;
-  flex-direction: column;
   display: none;
-  background-color: rgba(var(--background-color) / 92%);
+  background-color: var(--white);
   width: 100vw;
+  height: 100vh;
 }
 
 header .nav-sections h2 {
+  margin-top: 0;
   font-size: 22px;
+  font-weight: 600;
 }
 
 header .nav-sections ul {
   list-style: none;
+  width: calc(100% - 20px);
   padding-left: 0;
+  margin: 0;
 } 
 
 header .nav-sections li {
+  padding: 10px 20px;
   font-size: 20px;
   font-weight: 700;
 }
 
-header .nav[aria-expanded='true'] .nav-sections {
-  display: block;
-  align-self: flex-start;
+header .header .nav > .nav-sections > .nav-section > ul > li:nth-of-type(1) a:hover {
+  background-color: transparent;
 }
 
-header .nav[aria-expanded='true'] {
-  min-height: 100vh;
+header .nav[aria-expanded='true'] .nav-sections {
+  display: block;
+}
+
+/* section */
+header .nav-section .nav-section[aria-expanded='false'] {
+  display: none;
+}
+
+/* nav items */
+header a.nav-item:any-link {
+  display: block;
+  padding: 8px 16px 8px 44px;
+  text-decoration: none;
+  border-radius: 30px;
+}
+
+header a.nav-item.nav-item-active,
+header a.nav-item:hover {
+  background-color: #d9f3fd;
+}
+
+header a.nav-item-home {
+  font-size: 0;
+  margin-left: 10px;
+  display: block;
+  height: 100px;
+  background: url('/icons/astrazeneca.svg') left center no-repeat;
+}
+
+header a.nav-item-breast-cancer-hub {
+  background: url('/icons/nav-study-breast-cancer.svg') 16px center no-repeat;
+}
+
+header a.nav-item-introduction {
+  background: url('/icons/nav-study-introduction.svg') 16px center no-repeat;
+}
+
+header a.nav-item-study-design {
+  background: url('/icons/nav-study-design.svg') 16px center no-repeat;
+}
+
+header a.nav-item-results {
+  background: url('/icons/nav-study-results.svg') 16px center no-repeat;
+}
+
+header a.nav-item-conclusions {
+  background: url('/icons/nav-study-conclusions.svg') 16px center no-repeat;
+}
+
+/* sub sections */
+header a.nav-item + .nav-section a.nav-item:any-link {
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+header a.nav-item + .nav-section li {
+  font-weight: 400;
 }
 
 /* desktop nav styles */
 @media (min-width: 900px) {
   header .nav {
-    grid-template-areas: 'brand sections';
-    grid-template-columns: 200px 1fr;
+    position: fixed;
+    display: grid;
+    grid-template-areas:
+      "nav"
+      "toggle";
+    padding: 0;
+    width: 260px;
+    height: fit-content;
   }
 
-  header .nav-hamburger {
-    display: none;
-  }
-
-  header .nav-sections {
-    display: flex;
-    flex-direction: row;
-    background-color: unset;
-    width: unset;        
-  }
-  
-  header .nav[aria-expanded='true'] .nav-sections {
-    display: flex;
+  header .nav[aria-expanded='true'] {
     min-height: unset;
   }
 
-  header .nav-section {
-    padding: 0 16px;
-    position: relative;
+  header .nav[aria-expanded='false'] {
+    width: 53px;
   }
 
+  header .nav-hamburger {
+    grid-area: toggle;
+    padding: 12px 0 10px;
+    background: #dbf5ff url('/icons/arrow-left.svg') right 16px center no-repeat;
+  }
+
+  header .nav[aria-expanded='true'] .nav-hamburger {
+    width: 100%;
+    background-color: #dbf5ff;
+  }
+
+  header .nav[aria-expanded='false'] .nav-hamburger {
+    transform: scale(-1);
+    background-color: #dbf5ff;
+    background-position: right 12px center;
+    width: 100%;
+  }
+
+  header .nav-hamburger-icon {
+    display: none !important;
+  }
+
+  header .nav-sections {
+    display: block;
+    width: unset;
+    height: unset;
+    padding-bottom: 16px;
+  }
+
+  header .nav[aria-expanded='false'] .nav-sections {
+    width: 53px;
+  }
+
+  header .nav-section li {
+    font-size: 18px;
+    padding: 16px 16px 0;
+  }
+
+  header .nav[aria-expanded='false'] li {
+    padding-left: 0;
+    overflow-x: hidden;
+  }
+
+  header .nav[aria-expanded='false'] a {
+    /* hide nav item text */
+    font-size: 0;
+    line-height: 28px;
+    border-radius: 0;
+  }
+
+  header .nav[aria-expanded='false'] a.nav-item-home {
+    background: url('/icons/astrazeneca-condensed.svg') left center no-repeat;
+    height: 60px;
+  }
+
+  header .nav-section ul {
+    width: 100%;
+  }
+
+  header .nav-section .nav-section {
+    padding-top: 8px;
+  }
+
+  header .nav[aria-expanded='false'] .nav-section .nav-section {
+    display: none;
+  }
+
+  header .nav-section .nav-section li {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  header .nav-section li:first-of-type {
+    padding-top: 0;
+  }
+
+  header .header .nav > .nav-sections > .nav-section > ul > li:nth-of-type(2) {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #d8dada;
+  }
+  
   header .nav-sections h2 {
     font-size: 18px;
     margin: 0;
     cursor: pointer;
   }
 
-  header .nav-section ul {
-    display: none;
-  }
-
-  header .nav-section li {
-    font-size: 18px;
-    padding: 16px;
-  }
-
   header .nav-section[aria-expanded='true'] ul {
     display: block;
-    position: absolute;
-    background-color: var(--background-color);
-    width: 300px;
-    left: 0;
   } 
 }

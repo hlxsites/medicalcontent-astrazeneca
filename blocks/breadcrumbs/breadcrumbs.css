@@ -1,9 +1,15 @@
+main .section.breadcrumbs-container {
+  padding: 0;
+  background: none;
+}
+
 main .breadcrumbs {
-  font-family: var(--heading-font-family);
+  font-family: var(--accent-font-family);
   margin: 20px 0;
 }
 
 main .breadcrumbs a:any-link {
+  text-decoration: underline;
   color: currentcolor;
 }
 
@@ -13,4 +19,9 @@ main .breadcrumbs .breadcrumbs-separator {
 
 main .breadcrumbs .breadcrumbs-separator::before {
   content: "|";
+}
+
+/* theme: study */
+.study main .breadcrumbs {
+  margin: 20px 46px;
 }

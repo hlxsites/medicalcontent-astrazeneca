@@ -1,3 +1,7 @@
+main .section.disclaimers-container {
+  padding-right: 30px;
+}
+
 main .disclaimers {
   background-color: var(--white);
   border-radius: 10px;
@@ -15,7 +19,7 @@ main .disclaimers h2 {
 }
 
 main .disclaimers .disclaimers-toggle {
-  padding: 40px 30px;
+  padding: 10px 0;
 }
 
 main .disclaimers .disclaimers-toggle::after {
@@ -23,14 +27,14 @@ main .disclaimers .disclaimers-toggle::after {
   color: #D1016F;
   content: "+";
   padding-right: 30px;
-  top: 20px;
+  top: 0;
   right: 0;
   font-size: 40px;
 }
 
 main .disclaimers .disclaimers-content {
   display: none;
-  padding: 30px;
+  padding-top: 30px;
   font-size: var(--body-font-size-s);
 }
 
