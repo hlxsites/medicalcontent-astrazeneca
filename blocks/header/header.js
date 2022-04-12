@@ -22,7 +22,8 @@ function createNavSection(list, navSections, parent) {
     if (window.location.pathname.split('/').pop() === safeTitle) {
       link.classList.add('nav-item-active');
     }
-    link.href = `./${parent ? `${parent}/` : ''}${safeTitle}`;
+    const linkPrefix = window.location.pathname.split('/').filter((_, c) => c < 3).join('/');
+    link.href = `${linkPrefix}${parent || ''}/${safeTitle}`;
     if (!parent && i === 0) {
       // home link
       link.href = '/';
@@ -35,7 +36,7 @@ function createNavSection(list, navSections, parent) {
     item.append(link);
 
     const subNavSection = item.querySelector(':scope > ul')
-      && createNavSection(item.querySelector(':scope > ul'), navSections, safeTitle);
+      && createNavSection(item.querySelector(':scope > ul'), navSections, `/${safeTitle}`);
     if (subNavSection) {
       subNavSection.setAttribute('aria-expanded', 'false');
       item.append(subNavSection);
@@ -49,6 +50,8 @@ function createNavSection(list, navSections, parent) {
         collapseAllNavSections(navSections);
       } else {
         evt.preventDefault();
+        document.body.classList.toggle('nav-expanded');
+        section.closest('.nav').setAttribute('aria-expanded', expanded ? 'true' : 'fase');
       }
       section.setAttribute('aria-expanded', expanded ? 'false' : 'true');
     }, true);
@@ -105,4 +108,9 @@ export default async function decorate(block) {
   });
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+
+  // expand by default on desktop
+  if (window.innerWidth >= 900) {
+    hamburger.click();
+  }
 }
