@@ -10,23 +10,23 @@ function collapseAllNavSections(sections) {
   });
 }
 
-function createNavSection(list, navSections, top) {
+function createNavSection(list, navSections, parent) {
   const navSection = document.createElement('div');
   navSection.classList.add('nav-section');
   navSection.append(list);
   list.querySelectorAll(':scope > li').forEach((item, i) => {
     const title = item.firstChild.textContent.trim();
-    const safeTitle = toClassName(title);
+    const safeTitle = toClassName(title.replace('&', 'and'));
     const link = document.createElement('a');
     link.classList.add('nav-item', `nav-item-${safeTitle}`);
     if (window.location.pathname.split('/').pop() === safeTitle) {
       link.classList.add('nav-item-active');
     }
-    link.href = `./${safeTitle}`;
-    if (top && i === 0) {
+    link.href = `./${parent ? `${parent}/` : ''}${safeTitle}`;
+    if (!parent && i === 0) {
       // home link
       link.href = '/';
-    } else if (top && i === 1) {
+    } else if (!parent && i === 1) {
       // hub link
       link.href = `/${window.location.pathname.split('/')[1]}`;
     }
@@ -35,7 +35,7 @@ function createNavSection(list, navSections, top) {
     item.append(link);
 
     const subNavSection = item.querySelector(':scope > ul')
-      && createNavSection(item.querySelector(':scope > ul'), navSections);
+      && createNavSection(item.querySelector(':scope > ul'), navSections, safeTitle);
     if (subNavSection) {
       subNavSection.setAttribute('aria-expanded', 'false');
       item.append(subNavSection);
@@ -85,7 +85,7 @@ export default async function decorate(block) {
   }
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
-  navSections.append(createNavSection(list, navSections, true));
+  navSections.append(createNavSection(list, navSections));
   nav.append(navSections);
 
   // hamburger for mobile
