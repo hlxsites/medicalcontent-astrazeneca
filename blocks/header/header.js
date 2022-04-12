@@ -50,8 +50,6 @@ function createNavSection(list, navSections, parent) {
         collapseAllNavSections(navSections);
       } else {
         evt.preventDefault();
-        document.body.classList.toggle('nav-expanded');
-        section.closest('.nav').setAttribute('aria-expanded', expanded ? 'true' : 'fase');
       }
       section.setAttribute('aria-expanded', expanded ? 'false' : 'true');
     }, true);
