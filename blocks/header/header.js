@@ -19,9 +19,6 @@ function createNavSection(list, navSections, parent) {
     const safeTitle = toClassName(title.replace('&', 'and'));
     const link = document.createElement('a');
     link.classList.add('nav-item', `nav-item-${safeTitle}`);
-    if (window.location.pathname.split('/').pop() === safeTitle) {
-      link.classList.add('nav-item-active');
-    }
     const linkPrefix = window.location.pathname.split('/').filter((_, c) => c < 3).join('/');
     link.href = `${linkPrefix}${parent || ''}/${safeTitle}`;
     if (!parent && i === 0) {
@@ -35,11 +32,21 @@ function createNavSection(list, navSections, parent) {
     link.textContent = title;
     item.append(link);
 
+    if (window.location.pathname.split('/').pop() === safeTitle) {
+      link.classList.add('nav-item-active');
+      if (parent) {
+        link.closest('.nav-section').setAttribute('aria-expanded', 'true');
+      }
+    }
+
     const subNavSection = item.querySelector(':scope > ul')
       && createNavSection(item.querySelector(':scope > ul'), navSections, `/${safeTitle}`);
     if (subNavSection) {
-      subNavSection.setAttribute('aria-expanded', 'false');
+      if (!subNavSection.hasAttribute('aria-expanded')) {
+        subNavSection.setAttribute('aria-expanded', 'false');
+      }
       item.append(subNavSection);
+      link.classList.add('has-subnav');
       link.href = window.location.hash || '#';
     }
 
@@ -95,7 +102,7 @@ export default async function decorate(block) {
   hamburger.innerHTML = '<div class="nav-hamburger-icon" title="Toggle navigation"></div>';
   hamburger.addEventListener('click', () => {
     const expanded = nav.getAttribute('aria-expanded') === 'true';
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 900) {
       document.body.style.overflowY = expanded ? '' : 'hidden';
     } else if (expanded) {
       document.body.classList.remove('nav-expanded');
