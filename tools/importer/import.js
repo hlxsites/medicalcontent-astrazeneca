@@ -64,6 +64,8 @@ const makeAbsoluteLinks = (main) => {
   });
 };
 
+const location = () => document.querySelector('iframe#contentFrame').contentWindow.location;
+
 function createMetadata(main, document) {
   const meta = {};
 
@@ -85,6 +87,12 @@ function createMetadata(main, document) {
   const theme = document.querySelector('#root > div')?.classList.item(0).split('-')[0];
   if (theme) {
     meta.Theme = theme;
+  }
+
+  // ILD pages have special nav
+  const localNav = location(doc).pathname.includes('/ild/') ? '/breast-cancer/ild/nav' : '';
+  if (localNav) {
+    meta['Local Nav'] = localNav;
   }
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
