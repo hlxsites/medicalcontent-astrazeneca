@@ -132,9 +132,14 @@ header .nav-section .nav-section[aria-expanded='false'] {
 }
 
 /* nav items */
+header a.nav-item {
+  background-position: 16px 12px;
+  background-repeat: no-repeat;
+}
+
 header a.nav-item:any-link {
   display: block;
-  padding: 8px 16px 8px 44px;
+  padding: 8px 16px 8px 46px;
   text-decoration: none;
   border-radius: 30px;
 }
@@ -153,23 +158,39 @@ header a.nav-item-home {
 }
 
 header a.nav-item-breast-cancer-hub {
-  background: url('/icons/nav-study-breast-cancer.svg') 16px center no-repeat;
+  background-image: url('/icons/nav-study-breast-cancer.svg');
 }
 
 header a.nav-item-introduction {
-  background: url('/icons/nav-study-introduction.svg') 16px center no-repeat;
+  background-image: url('/icons/nav-study-introduction.svg');
 }
 
 header a.nav-item-study-design {
-  background: url('/icons/nav-study-design.svg') 16px center no-repeat;
+  background-image: url('/icons/nav-study-design.svg');
 }
 
 header a.nav-item-results {
-  background: url('/icons/nav-study-results.svg') 16px center no-repeat;
+  background-image: url('/icons/nav-study-results.svg');
 }
 
 header a.nav-item-conclusions {
-  background: url('/icons/nav-study-conclusions.svg') 16px center no-repeat;
+  background-image: url('/icons/nav-study-conclusions.svg');
+}
+
+header a.nav-item-characteristics {
+  background-image: url('/icons/nav-study-characteristics.svg');
+}
+
+header a.nav-item-risk-in-patients {
+  background-image: url('/icons/nav-study-risk.svg');
+}
+
+header a.nav-item-monitoring-and-management {
+  background-image: url('/icons/nav-study-monitoring.svg');
+}
+
+header a.nav-item-case-study {
+  background-image: url('/icons/nav-study-case-study.svg');
 }
 
 /* sub sections */

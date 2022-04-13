@@ -1,4 +1,4 @@
-import { getMetadata, readBlockConfig, toClassName } from '../../scripts/scripts.js';
+import { getMetadata, toClassName } from '../../scripts/scripts.js';
 
 /**
  * collapses all open nav sections
@@ -70,13 +70,13 @@ function createNavSection(list, navSections, parent) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  const cfg = readBlockConfig(block);
+  const localNav = getMetadata('local-nav');
   const theme = getMetadata('theme');
   if (theme !== 'study') {
     return;
   }
   // fetch nav content
-  const navPath = cfg.nav || `/${window.location.pathname.split('/')[1]}/nav`;
+  const navPath = localNav || `/${window.location.pathname.split('/')[1]}/nav`;
   const resp = await fetch(`${navPath}.plain.html`);
   if (!resp.ok) {
     return;
