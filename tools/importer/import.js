@@ -13,6 +13,7 @@
 
 const createRelatedBlock = (main, document) => {
   main.querySelectorAll('.related-section').forEach((section) => {
+    section.parentNode.insertBefore(document.createElement('hr'), section);
     const data = [['Related']];
     const title = section.previousSibling;
     if (title && title.classList.contains('related-section-title')) {
@@ -103,6 +104,7 @@ function createReferenceBlock(main, document) {
       // });
       const table = WebImporter.DOMUtils.createTable(data, document);
       reference.replaceWith(table);
+      table.parentNode.insertBefore(document.createElement('hr'), table.nextSibling);
     });
   }
 }
