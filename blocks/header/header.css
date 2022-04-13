@@ -133,7 +133,8 @@ header .nav-section .nav-section[aria-expanded='false'] {
 
 /* nav items */
 header a.nav-item {
-  background-position: 16px 12px;
+  background-position: 16px center;
+  background-size: 18px;
   background-repeat: no-repeat;
 }
 
@@ -191,6 +192,26 @@ header a.nav-item-monitoring-and-management {
 
 header a.nav-item-case-study {
   background-image: url('/icons/nav-study-case-study.svg');
+}
+
+header a.nav-item-patient-demographics {
+  background-image: url('/icons/nav-study-patient-demographics.svg');
+}
+
+header a.nav-item-patient-disposition {
+  background-image: url('/icons/nav-study-patient-disposition.svg');
+}
+
+header a.nav-item-efficacy {
+  background-image: url('/icons/nav-study-efficacy.svg');
+}
+
+header a.nav-item-safety {
+  background-image: url('/icons/nav-study-safety.svg');
+}
+
+header a.nav-item-summary {
+  background-image: url('/icons/nav-study-summary.svg');
 }
 
 /* sub sections */
@@ -320,4 +341,35 @@ header a.nav-item + .nav-section li {
   header .nav-section[aria-expanded='true'] ul {
     display: block;
   } 
+}
+
+/* hub: haematology */
+/* stylelint-disable no-descending-specificity */
+
+.haematology header .nav a:any-link {
+  color: #3c4242;
+  font-family: var(--accent-font-family);
+  font-weight: 400;
+}
+
+.haematology header a.nav-item-active {
+  background-color: #e6ccdc;
+}
+
+.haematology header .nav a:hover {
+  background-color: #ec99c5;
+}
+
+@media (min-width: 900px) {
+  .haematology header .nav[aria-expanded='false'] .nav-hamburger,
+  .haematology header .nav[aria-expanded='true'] .nav-hamburger {
+    border-top: solid 1px var(--graphite-20);
+    border-bottom: solid 1px var(--graphite-20);
+    background-color: var(--white);
+  }
+
+  .haematology header .nav[aria-expanded='false'] .nav-hamburger:hover,
+  .haematology header .nav[aria-expanded='true'] .nav-hamburger:hover {
+    background-color: #ec99c5;
+  }
 }

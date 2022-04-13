@@ -551,6 +551,10 @@ function setTheme(doc) {
   if (theme) {
     doc.documentElement.classList.add(toClassName(theme));
   }
+  const hub = window.location.pathname.split('/')[1];
+  if (hub) {
+    doc.documentElement.classList.add(hub);
+  }
 }
 
 /**
