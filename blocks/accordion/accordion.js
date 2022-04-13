@@ -5,6 +5,9 @@ export default function decorate(block) {
     const title = segment.querySelector(':scope > div:first-child');
     // Add a class to the title container
     title.classList.add('accordion-item-title');
+    const span = document.createElement('span');
+    span.append(...title.childNodes);
+    title.append(span);
     // Decorate the content divs
     segment.querySelectorAll(':scope > div:not(:first-child')
       .forEach((div) => {
