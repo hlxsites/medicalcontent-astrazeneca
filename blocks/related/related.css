@@ -31,7 +31,9 @@ main .related > div {
   justify-content: left;
 }
 
-.related .cards-card h3 {
+.related .cards-card h2,
+.related .cards-card h3,
+.related .cards-card h4 {
   margin-top: 0;
   margin-left: 42px;
   font-size: 24px;
@@ -95,6 +97,6 @@ main .related::-webkit-scrollbar-thumb {
 
 @media (min-width: 1200px) {
   main .related.cards:not(.cards-fifty-fifty) .cards-card {
-    width: calc(100% / 4);
+    width: calc((100% / 3) - 14px);
   }    
 }
