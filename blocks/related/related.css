@@ -17,13 +17,13 @@ main .related > div {
   position: relative;
 }
 
-.related .cards-card {
+.related.cards .cards-card {
   width: calc(100% / 5 * 4);
   height: auto;
   min-height: 120px;
 }
 
-.related .cards-card > a {
+.related.cards .cards-card > a {
   display: flex;
   height: calc(100% - 40px);
   flex-flow: column;
@@ -37,21 +37,21 @@ main .related > div {
   font-size: 24px;
 }
 
-.related .cards-card p {
+.related.cards .cards-card p {
   font-size: 14px;
 }
 
-.related .cards-card p:first-child {
+.related.cards .cards-card p:first-child {
   position: absolute;
   margin: 0;
 }
 
-.related .cards-card p:first-child img {
+.related.cards .cards-card p:first-child img {
   width: 30px;
   height: 30px;
 }
 
-.related .cards-card p.related-view-content {
+.related.cards .cards-card p.related-view-content {
   margin: 0;
   width: 100%;
   vertical-align: bottom;
@@ -61,7 +61,7 @@ main .related > div {
   font-weight: 800;
 }
 
-.related .cards-card p.related-view-content::before {
+.related.cards .cards-card p.related-view-content::before {
   content: "View Content  ❯";
   position: absolute;
   bottom: 10px;
@@ -78,7 +78,7 @@ main .related::-webkit-scrollbar-thumb {
 }
 
 @media (min-width: 600px) {
-  .related .cards-card {
+  .related.cards .cards-card {
     width: calc(100% / 2);
   }
 }
@@ -87,10 +87,14 @@ main .related::-webkit-scrollbar-thumb {
   main .related > div {
     width: calc(100% / 3);
   }    
+
+  .related.cards.cards-fifty-fifty .cards-card {
+    max-width: calc(50% - 10px);
+  }
 }
 
 @media (min-width: 1200px) {
-  main .related > div {
+  main .related.cards:not(.cards-fifty-fifty) .cards-card {
     width: calc(100% / 4);
   }    
 }

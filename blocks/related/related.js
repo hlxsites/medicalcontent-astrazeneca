@@ -1,5 +1,13 @@
+import { loadCSS } from '../../scripts/scripts.js';
+
 export default function decorate(block) {
+  if (!document.head.querySelector('link[href$="/cards.css"]')) {
+    loadCSS('/blocks/cards/cards.css');
+  }
   block.classList.add('cards');
+  if (block.children.length === 2) {
+    block.classList.add('cards-fifty-fifty');
+  }
   const classes = [
     'one', 'two', 'three', 'four', 'five', 'six',
   ];
