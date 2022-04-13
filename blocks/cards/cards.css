@@ -17,6 +17,7 @@
     box-sizing: border-box;
     border-radius: 10px;
     background-color: #ddd;
+    cursor: pointer;
 }
 
 .cards .cards-card:hover {

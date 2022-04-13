@@ -1,0 +1,84 @@
+main .related-wrapper {
+  max-width: 1100px;
+}
+    
+main .related {
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+  flex-wrap: nowrap;
+}
+
+main .related > div {
+  width: 50%;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.related .cards-card {
+  height: 140px;
+}
+
+.related .cards-card > a {
+  display: block;
+  height: 90px;
+  padding: 20px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.related .cards-card p:first-child {
+  float: left;
+  margin: 0;
+}
+
+.related .cards-card p:first-child img {
+  width: 30px;
+  height: 30px;
+}
+
+.related .cards-card h3 {
+  margin-top: 0;
+  margin-left: 42px;
+  font-size: 24px;
+  height: 60px;
+}
+
+.related .cards-card p.related-view-content {
+  color: var(--fg-color-link);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.related .cards-card p.related-view-content::before {
+  content: "View Content";
+}
+
+.related .cards-card p.related-view-content::after {
+  content: '❯';
+  margin-left: 10px;
+}
+
+main .related::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #eee; /* or add it to the track */
+}
+
+main .related::-webkit-scrollbar-thumb {
+  background: #999;
+}
+
+@media (min-width: 900px) {
+  main .related > div {
+      width: calc(100% / 3);
+  }    
+}
+
+@media (min-width: 1200px) {
+  main .related > div {
+      width: calc(100% / 4);
+  }    
+}
