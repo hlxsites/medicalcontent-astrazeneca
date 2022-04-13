@@ -225,8 +225,8 @@ main img {
     margin: 0 auto;
   }
 
-  main.nav-expanded {
-    width: calc(100% - 300px);
+  .nav-expanded main {
+    width: calc(100% - 320px);
     padding-left: 250px;
   }
 
