@@ -20,19 +20,18 @@ main .section.accordion-container {
     align-items: center;
 }
 
-.accordion-item-title:last-of-type {
-    border: none;
+.accordion-segment:last-of-type > .accordion-item-title {
+    border-bottom: none;
 }
 
 .accordion-item-title::after {
-    /* position: absolute; */
     color: #D1016F;
     content: "+";
     font-size: 40px;
     line-height: 40px;
 }
 
-.accordion-open > .accordion-item-title::after {
+.accordion-segment.accordion-open > .accordion-item-title::after {
     content: "–";
 }
 
@@ -54,7 +53,7 @@ p.accordion-image-only {
     text-align: center;
 }
 
-.accordion-open .accordion-item-content {
+.accordion-segment.accordion-open .accordion-item-content {
     display: block;
 }
 
