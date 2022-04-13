@@ -3,7 +3,7 @@ export default function decorate(block) {
     block.classList.add('cards-fifty-fifty');
   }
   const classes = [
-    'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',
+    'one', 'two', 'three', 'four', 'five', 'six',
   ];
   block.querySelectorAll(':scope > div > div').forEach((cell, index) => {
     if (cell.firstChild) {

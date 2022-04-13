@@ -1,10 +1,10 @@
 export default function decorate(block) {
   block.classList.add('cards');
   const classes = [
-    'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',
+    'one', 'two', 'three', 'four', 'five', 'six',
   ];
   block.querySelectorAll(':scope > div > div').forEach((card, index) => {
-    const style = classes[index] || classes[index % classes.length];
+    const style = classes[(index + 3) % classes.length];
     card.classList.add('cards-card', `cards-card-${style}`);
 
     const viewContent = document.createElement('p');
