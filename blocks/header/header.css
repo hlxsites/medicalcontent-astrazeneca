@@ -347,7 +347,7 @@ header a.nav-item + .nav-section li {
 /* stylelint-disable no-descending-specificity */
 
 .haematology header .nav a:any-link {
-  color: #3c4242;
+  color: var(--graphite-100);
   font-family: var(--accent-font-family);
   font-weight: 400;
 }
@@ -364,8 +364,12 @@ header a.nav-item + .nav-section li {
   .haematology header .nav[aria-expanded='false'] .nav-hamburger,
   .haematology header .nav[aria-expanded='true'] .nav-hamburger {
     border-top: solid 1px var(--graphite-20);
+    background: var(--white) url('/icons/arrow-left-graphite.svg') right 16px center no-repeat;
+  }
+
+  .haematology header .nav[aria-expanded='false'] .nav-hamburger {
+    border-top: none;
     border-bottom: solid 1px var(--graphite-20);
-    background-color: var(--white);
   }
 
   .haematology header .nav[aria-expanded='false'] .nav-hamburger:hover,
