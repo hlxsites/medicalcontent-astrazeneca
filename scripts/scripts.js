@@ -528,9 +528,11 @@ loadPage(document);
 
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
-  const section = document.createElement('div');
-  section.append(buildBlock('hero', { elems: [...h1.parentElement.children] }));
-  main.prepend(section);
+  if (h1) {
+    const section = document.createElement('div');
+    section.append(buildBlock('hero', { elems: [...h1.parentElement.children] }));
+    main.prepend(section);
+  }
 }
 
 function buildBreadcrumbsBlock(main) {
@@ -554,6 +556,10 @@ function setTheme(doc) {
   const hub = window.location.pathname.split('/')[1];
   if (hub) {
     doc.documentElement.classList.add(hub);
+  }
+  if (window.innerWidth >= 900) {
+    // desktop CLS protection
+    doc.body.classList.add('nav-expanded');
   }
 }
 
