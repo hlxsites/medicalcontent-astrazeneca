@@ -12,34 +12,37 @@
 /* eslint-disable no-console, class-methods-use-this, no-undef */
 
 const createRelatedBlock = (main, document) => {
-  const sections = main.querySelectorAll('.related-section');
-  if (sections) {
-    sections.forEach((section) => {
-      const data = [['Related']];
-      const title = section.previousSibling;
-      if (title && title.classList.contains('related-section-title')) {
-        data.push([[title]]);
-      }
-      section.querySelectorAll('.related-section-item .box-link').forEach((item) => {
-        const p = item.querySelector('.box-link-text');
-        if (p) {
-          p.remove();
-        }
-        const img = item.querySelector('img');
-        if (img) {
-          item.before(img);
-        }
-
-        const body = item.querySelector('.box-body');
-        if (body) {
-          item.after(body);
-        }
-        data.push([item.parentNode]);
-      });
-      const table = WebImporter.DOMUtils.createTable(data, document);
-      section.replaceWith(table);
+  main.querySelectorAll('.related-section').forEach((section) => {
+    const data = [['Related']];
+    const title = section.previousSibling;
+    if (title && title.classList.contains('related-section-title')) {
+      data.push([[title]]);
+    }
+    // convert headings to h3
+    section.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((hx) => {
+      const h3 = document.createElement('h3');
+      h3.append(...hx.childNodes);
+      hx.replaceWith(h3);
     });
-  }
+    section.querySelectorAll('.related-section-item .box-link').forEach((item) => {
+      const p = item.querySelector('.box-link-text');
+      if (p) {
+        p.remove();
+      }
+      const img = item.querySelector('img');
+      if (img) {
+        item.before(img);
+      }
+
+      const body = item.querySelector('.box-body');
+      if (body) {
+        item.after(body);
+      }
+      data.push([item.parentNode]);
+    });
+    const table = WebImporter.DOMUtils.createTable(data, document);
+    section.replaceWith(table);
+  });
 };
 
 const makeAbsoluteImages = (main) => {
