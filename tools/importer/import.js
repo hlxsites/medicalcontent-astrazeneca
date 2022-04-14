@@ -15,19 +15,27 @@ const location = () => document.querySelector('iframe#contentFrame').contentWind
 
 const createRelatedFragment = (main, document) => {
   main.querySelectorAll('.related-section').forEach((section) => {
-    const data = [['Fragment']];
-    const path = location().pathname;
-    const hub = (path && path.split('/')[1]) || 'breast-cancer';
-    const linkPrefix = `https://medicalcontent.astrazeneca.com/${hub}/`;
-    const link = document.createElement('a');
+    const data = [];
     const title = section.previousSibling;
+    // insert a section above if necessary
     if (title && title.previousSibling && title.previousSibling.tagName !== 'HR') {
       section.parentNode.insertBefore(document.createElement('hr'), title);
     }
-    const linkSuffix = title && title.textContent.trim().toLowerCase().replace(' ', '-');
-    link.href = `${linkPrefix}${linkSuffix}`;
-    link.textContent = link.href;
-    data.push([[link]]);
+    if (title && title.textContent.toLowerCase().includes('content')) {
+      // related content > related block with localNav
+      data.push([['Related']]);
+      data.push([['localNav']]);
+    } else {
+      data.push([['Fragment']]);
+      const path = location().pathname;
+      const hub = (path && path.split('/')[1]) || 'breast-cancer';
+      const linkPrefix = `https://medicalcontent.astrazeneca.com/${hub}/`;
+      const link = document.createElement('a');
+      const linkSuffix = title && title.textContent.trim().toLowerCase().replace(' ', '-');
+      link.href = `${linkPrefix}${linkSuffix}`;
+      link.textContent = link.href;
+      data.push([[link]]);
+    }
     const table = WebImporter.DOMUtils.createTable(data, document);
     section.replaceWith(table);
   });
