@@ -405,9 +405,9 @@ export function makeLinksRelative(main) {
   main.querySelectorAll('a').forEach((a) => {
     // eslint-disable-next-line no-use-before-define
     const hosts = [
-      'main--medicalcontent-astrazenica--hlxsites.hlx.page',
-      'main--medicalcontent-astrazenica--hlxsites.hlx3.page',
-      'main--medicalcontent-astrazenica--hlxsites.hlx.live',
+      'main--medicalcontent-astrazeneca--hlxsites.hlx.page',
+      'main--medicalcontent-astrazeneca--hlxsites.hlx3.page',
+      'main--medicalcontent-astrazeneca--hlxsites.hlx.live',
       // eslint-disable-next-line no-use-before-define
       ...PRODUCTION_DOMAINS,
     ];
