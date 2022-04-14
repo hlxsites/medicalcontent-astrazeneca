@@ -360,6 +360,14 @@ header a.nav-item + .nav-section li {
   background-color: #ec99c5;
 }
 
+.haematology header a.nav-item-introduction {
+  background-image: url('/icons/nav-study-introduction-graphite.svg');
+}
+
+.haematology header a.nav-item-study-design {
+  background-image: url('/icons/nav-study-design-graphite.svg');
+}
+
 @media (min-width: 900px) {
   .haematology header .nav[aria-expanded='false'] .nav-hamburger,
   .haematology header .nav[aria-expanded='true'] .nav-hamburger {

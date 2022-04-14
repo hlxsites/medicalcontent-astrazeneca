@@ -138,8 +138,18 @@
     }
 }
 
-/* theme: hub */
+/* theme-specific styles */
 .hub main .section.cards-container {
     background: none;
     padding: 0;
+}
+
+.haematology .cards .cards-card-details h2 {
+    font-family: var(--accent-font-family);
+    font-weight: 400;
+    color: var(--graphite-100);
+}
+
+.haematology .cards .cards-card-details a:any-link {
+    color: var(--magenta-100);
 }

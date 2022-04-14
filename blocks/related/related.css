@@ -100,3 +100,8 @@ main .related::-webkit-scrollbar-thumb {
     width: calc((100% / 3) - 14px);
   }    
 }
+
+/* theme-specific styles */
+.haematology .related.cards .cards-card p.related-view-content {
+  color: var(--magenta-100);
+}

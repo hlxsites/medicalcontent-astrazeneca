@@ -19,7 +19,9 @@
 
   /* fonts */
   --body-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --body-font-weight: 400;
   --heading-font-family: var(--body-font-family);
+  --heading-font-weight: 700;
   --accent-font-family: lexia, serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
@@ -34,7 +36,7 @@
   --heading-font-size-m: 27px;
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
-
+  
   /* astrazeneca colors */
   --bg-color: #f7fafc;
   --fg-color-black: #333;
@@ -62,6 +64,7 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--bg-color);
@@ -83,7 +86,7 @@ h1, h2, h3,
 h4, h5, h6 {
   color: var(--heading-color);
   font-family: var(--heading-font-family);
-  font-weight: 700;
+  font-weight: var(--heading-font-weight);
   line-height: 1.25;
   margin-top: .5em;
   margin-bottom: .5em;
@@ -251,19 +254,19 @@ main .default-content-wrapper h2 {
   margin-bottom: 40px;
 }
 
-/* theme: hub */
+/* theme-specific styles */
 
 :root.homepage,
+:root.haematology,
 :root.hub {
   --heading-font-family: var(--accent-font-family);
+  --heading-font-weight: var(--body-font-weight);
 }
 
 .hub header {
   display: none;  
 }
 
-
-/* theme: study */
 .study main h2 {
   font-size: var(--heading-font-size-m);  
 }
@@ -276,10 +279,8 @@ main .default-content-wrapper h2 {
   .study body.nav-expanded main {
     padding-left: 280px;
   }
-
 }
 
-/* theme: homepage */
 .homepage main .default-content-wrapper {
   text-align: center;
 }
