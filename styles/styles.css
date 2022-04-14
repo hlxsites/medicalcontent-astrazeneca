@@ -260,6 +260,9 @@ main .default-content-wrapper h2 {
 :root.haematology,
 :root.hub {
   --heading-font-family: var(--accent-font-family);
+}
+
+:root.haematology {
   --heading-font-weight: var(--body-font-weight);
 }
 

@@ -406,6 +406,7 @@ export function makeLinksRelative(main) {
     // eslint-disable-next-line no-use-before-define
     const hosts = [
       'main--medicalcontent-astrazenica--hlxsites.hlx.page',
+      'main--medicalcontent-astrazenica--hlxsites.hlx3.page',
       'main--medicalcontent-astrazenica--hlxsites.hlx.live',
       // eslint-disable-next-line no-use-before-define
       ...PRODUCTION_DOMAINS,
@@ -536,6 +537,9 @@ function buildHeroBlock(main) {
 }
 
 function buildBreadcrumbsBlock(main) {
+  if (document.querySelector('.block.breadcrumbs')) {
+    return;
+  }
   const section = document.createElement('div');
   section.append(buildBlock('breadcrumbs', { elems: [] }));
   main.prepend(section);
@@ -557,7 +561,7 @@ function setTheme(doc) {
   if (hub) {
     doc.documentElement.classList.add(hub);
   }
-  if (window.innerWidth >= 900) {
+  if (theme === 'study' && window.innerWidth >= 900) {
     // desktop CLS protection
     doc.body.classList.add('nav-expanded');
   }

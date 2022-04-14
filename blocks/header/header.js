@@ -82,6 +82,8 @@ export default async function decorate(block) {
     return;
   }
   const html = await resp.text();
+  window.azmc = window.azmc || {};
+  window.azmc.nav = html;
   block.innerHTML = html;
   const nav = block.querySelector(':scope > div');
   // decorate nav DOM

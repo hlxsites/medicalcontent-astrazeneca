@@ -37,6 +37,13 @@ main .related > div {
   margin-top: 0;
   margin-left: 42px;
   font-size: 24px;
+  color: var(--fg-color-dark-blue);
+}
+
+.related .cards-card.no-image h2,
+.related .cards-card.no-image h3,
+.related .cards-card.no-image h4 {
+  margin-left: 0;
 }
 
 .related.cards .cards-card p {

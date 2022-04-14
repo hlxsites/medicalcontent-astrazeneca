@@ -11,36 +11,23 @@
  */
 /* eslint-disable no-console, class-methods-use-this, no-undef */
 
-const createRelatedBlock = (main, document) => {
-  main.querySelectorAll('.related-section').forEach((section) => {
-    section.parentNode.insertBefore(document.createElement('hr'), section);
-    const data = [['Related']];
-    const title = section.previousSibling;
-    if (title && title.classList.contains('related-section-title')) {
-      data.push([[title]]);
-    }
-    // convert headings to h3
-    section.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((hx) => {
-      const h3 = document.createElement('h3');
-      h3.append(...hx.childNodes);
-      hx.replaceWith(h3);
-    });
-    section.querySelectorAll('.related-section-item .box-link').forEach((item) => {
-      const p = item.querySelector('.box-link-text');
-      if (p) {
-        p.remove();
-      }
-      const img = item.querySelector('img');
-      if (img) {
-        item.before(img);
-      }
+const location = () => document.querySelector('iframe#contentFrame').contentWindow.location;
 
-      const body = item.querySelector('.box-body');
-      if (body) {
-        item.after(body);
-      }
-      data.push([item.parentNode]);
-    });
+const createRelatedFragment = (main, document) => {
+  main.querySelectorAll('.related-section').forEach((section) => {
+    const data = [['Fragment']];
+    const path = location().pathname;
+    const hub = (path && path.split('/')[1]) || 'breast-cancer';
+    const linkPrefix = `https://medicalcontent.astrazeneca.com/${hub}/`;
+    const link = document.createElement('a');
+    const title = section.previousSibling;
+    if (title && title.previousSibling && title.previousSibling.tagName !== 'HR') {
+      section.parentNode.insertBefore(document.createElement('hr'), title);
+    }
+    const linkSuffix = title && title.textContent.trim().toLowerCase().replace(' ', '-');
+    link.href = `${linkPrefix}${linkSuffix}`;
+    link.textContent = link.href;
+    data.push([[link]]);
     const table = WebImporter.DOMUtils.createTable(data, document);
     section.replaceWith(table);
   });
@@ -58,13 +45,11 @@ const makeAbsoluteImages = (main) => {
 const makeAbsoluteLinks = (main) => {
   main.querySelectorAll('a').forEach((a) => {
     if (a.href.startsWith('/')) {
-      const u = new URL(a.href, 'https://main--medicalcontent-astrazeneca--hlxsites.hlx3.page/');
+      const u = new URL(a.href, 'https://medicalcontent.astrazeneca.com/');
       a.href = u.toString();
     }
   });
 };
-
-const location = () => document.querySelector('iframe#contentFrame').contentWindow.location;
 
 function createMetadata(main, document) {
   const meta = {};
@@ -90,7 +75,7 @@ function createMetadata(main, document) {
   }
 
   // ILD pages have special nav
-  const localNav = location(doc).pathname.includes('/ild/') ? '/breast-cancer/ild/nav' : '';
+  const localNav = location(document).pathname.includes('/ild/') ? '/breast-cancer/ild/nav' : '';
   if (localNav) {
     meta['Local Nav'] = localNav;
   }
@@ -291,7 +276,7 @@ export default {
     const main = document.body;
 
     restructure(main, document);
-    createRelatedBlock(main, document);
+    createRelatedFragment(main, document);
     createTabBlock(main, document);
     createAccordionBlock(main, document);
     createReferenceBlock(main, document);
