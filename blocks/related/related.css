@@ -109,6 +109,12 @@ main .related::-webkit-scrollbar-thumb {
 }
 
 /* theme-specific styles */
+.haematology .related .cards-card h2,
+.haematology .related .cards-card h3,
+.haematology .related .cards-card h4 {
+  color: var(--graphite-100);
+}
+
 .haematology .related.cards .cards-card p.related-view-content {
   color: var(--magenta-100);
 }

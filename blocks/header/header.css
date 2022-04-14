@@ -162,55 +162,55 @@ header a.nav-item-breast-cancer-hub {
   background-image: url('/icons/nav-study-breast-cancer.svg');
 }
 
-header a.nav-item-introduction {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-introduction {
   background-image: url('/icons/nav-study-introduction.svg');
 }
 
-header a.nav-item-study-design {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-study-design {
   background-image: url('/icons/nav-study-design.svg');
 }
 
-header a.nav-item-results {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-results {
   background-image: url('/icons/nav-study-results.svg');
 }
 
-header a.nav-item-conclusions {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-conclusions {
   background-image: url('/icons/nav-study-conclusions.svg');
 }
 
-header a.nav-item-characteristics {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-characteristics {
   background-image: url('/icons/nav-study-characteristics.svg');
 }
 
-header a.nav-item-risk-in-patients {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-risk-in-patients {
   background-image: url('/icons/nav-study-risk.svg');
 }
 
-header a.nav-item-monitoring-and-management {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-monitoring-and-management {
   background-image: url('/icons/nav-study-monitoring.svg');
 }
 
-header a.nav-item-case-study {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-case-study {
   background-image: url('/icons/nav-study-case-study.svg');
 }
 
-header a.nav-item-patient-demographics {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-patient-demographics {
   background-image: url('/icons/nav-study-patient-demographics.svg');
 }
 
-header a.nav-item-patient-disposition {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-patient-disposition {
   background-image: url('/icons/nav-study-patient-disposition.svg');
 }
 
-header a.nav-item-efficacy {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-efficacy {
   background-image: url('/icons/nav-study-efficacy.svg');
 }
 
-header a.nav-item-safety {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-safety {
   background-image: url('/icons/nav-study-safety.svg');
 }
 
-header a.nav-item-summary {
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-summary {
   background-image: url('/icons/nav-study-summary.svg');
 }
 
@@ -360,11 +360,11 @@ header a.nav-item + .nav-section li {
   background-color: #ec99c5;
 }
 
-.haematology header a.nav-item-introduction {
+.haematology header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-introduction {
   background-image: url('/icons/nav-study-introduction-graphite.svg');
 }
 
-.haematology header a.nav-item-study-design {
+.haematology header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-study-design {
   background-image: url('/icons/nav-study-design-graphite.svg');
 }
 
