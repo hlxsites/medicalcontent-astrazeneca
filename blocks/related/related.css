@@ -1,5 +1,10 @@
+main .related-container .default-content-wrapper {
+  text-align: center;
+}
+
 main .related-wrapper {
   max-width: 1100px;
+  text-align: center;
 }
     
 main .related {
@@ -11,7 +16,6 @@ main .related {
 }
 
 main .related > div {
-  width: 50%;
   flex-shrink: 0;
   scroll-snap-align: start;
   position: relative;
@@ -19,6 +23,7 @@ main .related > div {
 
 .related.cards .cards-card {
   width: calc(100% / 5 * 4);
+  max-width: 300px;
   height: auto;
   min-height: 120px;
 }
@@ -61,7 +66,7 @@ main .related > div {
 }
 
 .related.cards .cards-card p.related-view-content {
-  margin: 0;
+  margin: 10px 0;
   width: 100%;
   vertical-align: bottom;
   flex-grow: 1;
@@ -73,7 +78,7 @@ main .related > div {
 .related.cards .cards-card p.related-view-content::before {
   content: "View Content  ❯";
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
 }
 
 main .related::-webkit-scrollbar {
@@ -84,6 +89,10 @@ main .related::-webkit-scrollbar {
 
 main .related::-webkit-scrollbar-thumb {
   background: #999;
+}
+
+main .related.cards-single::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 600px) {
@@ -98,12 +107,12 @@ main .related::-webkit-scrollbar-thumb {
   }    
 
   .related.cards.cards-fifty-fifty .cards-card {
-    max-width: calc(50% - 10px);
+    width: calc(50% - 10px);
   }
 }
 
 @media (min-width: 1200px) {
-  main .related.cards:not(.cards-fifty-fifty) .cards-card {
+  main .related.cards:not(.cards-fifty-fifty,.cards.cards-single) .cards-card {
     width: calc((100% / 3) - 14px);
   }    
 }

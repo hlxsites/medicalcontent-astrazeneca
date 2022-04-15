@@ -30,9 +30,6 @@ export default async function decorate(block) {
     loadCSS('/blocks/cards/cards.css');
   }
   block.classList.add('cards');
-  if (block.children.length === 2) {
-    block.classList.add('cards-fifty-fifty');
-  }
   const classes = [
     'one', 'two', 'three', 'four', 'five', 'six',
   ];
@@ -88,4 +85,9 @@ export default async function decorate(block) {
     }
     card.parentElement.replaceWith(card);
   });
+  if (block.children.length === 1) {
+    block.classList.add('cards-single');
+  } else if (block.children.length === 2) {
+    block.classList.add('cards-fifty-fifty');
+  }
 }

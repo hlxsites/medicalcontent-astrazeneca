@@ -7,6 +7,10 @@
     text-align: left;
 }
 
+.cards.cards-single {
+    display: inline-block;
+}
+
 .cards > div {
     width: 100%;
 }
@@ -25,6 +29,9 @@
     background-color: #ccc;
 }
 
+.related.cards.cards-single .cards-card {
+    width: 100%;
+}
 
 .cards .cards-card.cards-card-one {
     background-color: #e7f1d0;
@@ -133,7 +140,7 @@
 }
 
 @media (min-width: 1200px) {
-    .cards:not(.cards-fifty-fifty) > div {
+    .cards:not(.cards-fifty-fifty,.cards-single) > div {
         width: calc((100% / 3) - 14px);
     }
 }
