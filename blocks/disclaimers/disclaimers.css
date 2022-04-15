@@ -1,4 +1,5 @@
 main .section.disclaimers-container {
+  padding-left: 30px;
   padding-right: 30px;
 }
 
@@ -30,6 +31,11 @@ main .disclaimers .disclaimers-toggle::after {
   top: 0;
   right: 0;
   font-size: 40px;
+  line-height: 40px;
+}
+
+main .disclaimers.disclaimers-open .disclaimers-toggle::after {
+  content: "–";
 }
 
 main .disclaimers .disclaimers-content {
