@@ -108,6 +108,7 @@ main .related.cards-single::-webkit-scrollbar {
 
   .related.cards.cards-fifty-fifty .cards-card {
     width: calc(50% - 10px);
+    max-width: unset;
   }
 }
 
