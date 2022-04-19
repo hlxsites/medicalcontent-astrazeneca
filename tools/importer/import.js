@@ -235,6 +235,37 @@ function createDisclaimersBlock(main, document) {
   });
 }
 
+function createEmbedBlock(main, document) {
+  main.querySelectorAll('.video-component').forEach((module) => {
+    const data = [['Embed']];
+    const pars = [];
+
+    // poster image
+    const img = module.querySelector(':scope img');
+    if (img) {
+      const p = document.createElement('p');
+      p.append(img);
+      pars.push(p);
+    }
+
+    // video tag (will require manual upload step)
+    const video = module.querySelector(':scope video');
+    if (video) {
+      const p = document.createElement('p');
+      const a = p.appendChild(document.createElement('a'));
+      a.href = new URL(video.firstChild.src, 'https://medicalcontent.astrazeneca.com/').href;
+      a.textContent = a.href;
+      p.append(a);
+      pars.push(p);
+    }
+
+    data.push([[...pars]]);
+
+    const table = WebImporter.DOMUtils.createTable(data, document);
+    module.replaceWith(table);
+  });
+}
+
 function restructure(main, document) {
   // move h1 before first module
   const h1 = main.querySelector('h1');
@@ -295,6 +326,7 @@ export default {
     makeAbsoluteLinks(main);
     createCardsBlock(main, document);
     createDisclaimersBlock(main, document);
+    createEmbedBlock(main, document);
     fixHeadings(main);
 
     WebImporter.DOMUtils.remove(main, [
