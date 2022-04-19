@@ -22,5 +22,7 @@ export default function decorate(block) {
     title.addEventListener('click', () => {
       title.parentElement.classList.toggle('accordion-open');
     });
+    // don't lazyload images
+    segment.querySelectorAll(':scope img').forEach((img) => img.setAttribute('loading', 'eager'));
   });
 }
