@@ -33,7 +33,8 @@ export default async function decorate(block) {
   const classes = [
     'one', 'two', 'three', 'four', 'five', 'six',
   ];
-  if (block.textContent.trim() === 'localNav') {
+  const isLocalNav = block.textContent.trim() === 'localNav';
+  if (isLocalNav) {
     block.innerHTML = '';
     const localNav = getMetadata('local-nav');
     // fetch nav content
@@ -65,15 +66,18 @@ export default async function decorate(block) {
 
     const link = card.querySelector(':scope a');
     if (link && link.href) {
-      try {
-        const { pathname } = new URL(link.href);
-        if (window.location.pathname.startsWith(pathname)) {
-          // omit self
-          card.parentElement.remove();
-          return;
+      if (!isLocalNav) {
+        try {
+          let { pathname } = new URL(link.href);
+          pathname = pathname.split('/').filter((_, i) => i < 3).join('/');
+          if (window.location.pathname.startsWith(pathname)) {
+            // omit self
+            card.parentElement.remove();
+            return;
+          }
+        } catch (e) {
+          // ignore
         }
-      } catch (e) {
-        // ignore
       }
       const cardLink = document.createElement('a');
       cardLink.href = link.href;
