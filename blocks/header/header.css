@@ -162,6 +162,10 @@ header a.nav-item-breast-cancer-hub {
   background-image: url('/icons/nav-study-breast-cancer.svg');
 }
 
+header a.nav-item-haematology-hub {
+  background-image: url('/icons/nav-study-haematology.svg');
+}
+
 header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-introduction {
   background-image: url('/icons/nav-study-introduction.svg');
 }
