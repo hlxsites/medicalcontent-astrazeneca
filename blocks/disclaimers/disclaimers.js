@@ -4,7 +4,7 @@ export default function decorate(block) {
     content.classList.add('disclaimers-content');
     const toggle = block.children[0].firstChild;
     toggle.classList.add('disclaimers-toggle');
-    toggle.setAttribute('aria-role', 'menu');
+    toggle.setAttribute('aria-role', 'complementary');
     toggle.addEventListener('click', () => {
       block.classList.toggle('disclaimers-open');
       content.classList.toggle('appear');
