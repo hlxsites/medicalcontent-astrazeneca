@@ -552,7 +552,8 @@ function loadHeader(header) {
   loadBlock(headerBlock);
 }
 
-function setTheme(doc) {
+function decorateDoc(doc) {
+  doc.documentElement.setAttribute('lang', 'en');
   const theme = getMetadata('theme');
   if (theme) {
     doc.documentElement.classList.add(toClassName(theme));
@@ -599,7 +600,7 @@ export function decorateMain(main) {
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
-  setTheme(doc);
+  decorateDoc(doc);
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
