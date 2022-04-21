@@ -218,6 +218,18 @@ header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-summary {
   background-image: url('/icons/nav-study-summary.svg');
 }
 
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-dosing-and-admin-of-t-dxd {
+  background-image: url('/icons/nav-study-dosing.svg');
+}
+
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-t-dxd-ar-overview {
+  background-image: url('/icons/nav-study-risk.svg');
+}
+
+header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-ar-management {
+  background-image: url('/icons/nav-study-ar-management.svg');
+}
+
 /* sub sections */
 header a.nav-item + .nav-section a.nav-item:any-link {
   padding: 8px 16px;
