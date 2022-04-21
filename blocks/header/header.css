@@ -324,15 +324,19 @@ header a.nav-item + .nav-section li {
 
   header .nav-section .nav-section li {
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 8px 0 8px 16px;
   }
 
   header .nav-section li:first-of-type {
     padding-top: 0;
   }
 
+  header .nav-section .nav-section li .nav-section li {
+    font-size: 13px;
+  }
+
   header .header .nav > .nav-sections > .nav-section > ul > li:nth-of-type(2) {
-    padding-bottom: 16px;
+    padding-bottom: 14px;
     border-bottom: 1px solid #d8dada;
   }
   
