@@ -1,4 +1,5 @@
 import { getMetadata, toClassName } from '../../scripts/scripts.js';
+import fetchNav from '../shared/nav.js';
 
 /**
  * collapses all open nav sections
@@ -10,7 +11,7 @@ function collapseAllNavSections(sections) {
   });
 }
 
-function createNavSection(list, navSections, parent) {
+function createNavSection(list, navSections, parent = '') {
   const navSection = document.createElement('div');
   navSection.classList.add('nav-section');
   navSection.append(list);
@@ -32,7 +33,7 @@ function createNavSection(list, navSections, parent) {
     link.textContent = title;
     item.append(link);
 
-    if (window.location.pathname.split('/').pop() === safeTitle) {
+    if (window.location.pathname === link.getAttribute('href')) {
       link.classList.add('nav-item-active');
       if (parent) {
         link.closest('.nav-section').setAttribute('aria-expanded', 'true');
@@ -40,7 +41,7 @@ function createNavSection(list, navSections, parent) {
     }
 
     const subNavSection = item.querySelector(':scope > ul')
-      && createNavSection(item.querySelector(':scope > ul'), navSections, `/${safeTitle}`);
+      && createNavSection(item.querySelector(':scope > ul'), navSections, `${parent}/${safeTitle}`);
     if (subNavSection) {
       if (!subNavSection.hasAttribute('aria-expanded')) {
         subNavSection.setAttribute('aria-expanded', 'false');
@@ -70,20 +71,15 @@ function createNavSection(list, navSections, parent) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  const localNav = getMetadata('local-nav');
   const theme = getMetadata('theme');
   if (theme !== 'study') {
     return;
   }
   // fetch nav content
-  const navPath = localNav || `/${window.location.pathname.split('/')[1]}/nav`;
-  const resp = await fetch(`${navPath}.plain.html`);
-  if (!resp.ok) {
+  const html = await fetchNav();
+  if (!html) {
     return;
   }
-  const html = await resp.text();
-  window.azmc = window.azmc || {};
-  window.azmc.nav = html;
   block.innerHTML = html;
   const nav = block.querySelector(':scope > div');
   // decorate nav DOM

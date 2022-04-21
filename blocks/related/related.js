@@ -1,4 +1,5 @@
-import { getMetadata, loadCSS, toClassName } from '../../scripts/scripts.js';
+import { loadCSS, toClassName } from '../../scripts/scripts.js';
+import fetchNav from '../shared/nav.js';
 
 function createCards(list, parent) {
   const cards = [];
@@ -36,19 +37,10 @@ export default async function decorate(block) {
   const isLocalNav = block.textContent.trim() === 'localNav';
   if (isLocalNav) {
     block.innerHTML = '';
-    const localNav = getMetadata('local-nav');
-    // fetch nav content
-    let nav = window.azmc && window.azmc.nav;
-    if (!nav) {
-      const navPath = localNav || `/${window.location.pathname.split('/')[1]}/nav`;
-      const resp = await fetch(`${navPath}.plain.html`);
-      if (resp.ok) {
-        nav = await resp.text();
-      }
-    }
-    if (nav) {
-      const tmp = document.createElement('div');
-      tmp.innerHTML = nav;
+    const tmp = document.createElement('div');
+    const html = await fetchNav();
+    if (html) {
+      tmp.innerHTML = html;
       const rootList = tmp.querySelector('ul, ol');
       block.append(...createCards(rootList));
     }
