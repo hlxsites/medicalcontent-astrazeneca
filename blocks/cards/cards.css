@@ -8,7 +8,7 @@
 }
 
 .cards.cards-single {
-    display: inline-block;
+    justify-content: center;
 }
 
 .cards > div {
@@ -141,6 +141,10 @@
     padding: 0;
 }
 
+.cards.blue .cards-card-details > *:not(p:first-child) {
+    margin: 20px;
+}
+
 .cards.blue .cards-card-details > p:first-child {
     display: flex;
     margin: 0;
@@ -167,7 +171,7 @@
         justify-content: space-between;
     }
 
-    .cards > div {
+    .cards:not(.cards-single) > div {
         width: calc((100% / 2) - 10px);
     }
 }
