@@ -15,7 +15,7 @@ export default function decorate(block) {
   ul.className = 'hero-shortcuts';
   document.querySelectorAll('main > div:not(.related-container,.fragment-container) .default-content-wrapper > h2').forEach((item) => {
     const li = document.createElement('li');
-    li.innerHTML = `<a href="#${item.id}" title="${item.textContent}">${item.textContent}</a>`;
+    li.innerHTML = `<a href="#${item.id}" title="${item.textContent}">${item.innerHTML}</a>`;
     ul.append(li);
   });
   block.append(ul);
