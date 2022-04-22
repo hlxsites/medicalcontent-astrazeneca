@@ -1,4 +1,7 @@
 export default function decorate(block) {
+  if (block.children.length === 1) {
+    block.classList.add('cards-single');
+  }
   if (block.children.length === 2) {
     block.classList.add('cards-fifty-fifty');
   }
