@@ -81,6 +81,14 @@
     background-color: #c8f7f2;
 }
 
+.haematology .cards .cards-card.cards-card-one {
+    background-color: #e6ccdc;
+}
+
+.haematology .cards .cards-card.cards-card-one:hover {
+    background-color: #d5bacb;
+}
+
 .cards .cards-card > a:any-link {
     color: currentcolor;
     text-decoration: none;
