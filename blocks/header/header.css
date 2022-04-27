@@ -181,6 +181,10 @@ header .nav ul li a.has-subnav::after {
   background-repeat: no-repeat;
 }
 
+header .nav[aria-expanded='false'] ul li a.has-subnav::after {
+  display: none;
+}
+
 header .nav ul li a.has-subnav.expanded::after {
   transform: rotate(180deg);
 }
