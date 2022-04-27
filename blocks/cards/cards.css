@@ -81,14 +81,6 @@
     background-color: #c8f7f2;
 }
 
-.haematology .cards .cards-card.cards-card-one {
-    background-color: #e6ccdc;
-}
-
-.haematology .cards .cards-card.cards-card-one:hover {
-    background-color: #d5bacb;
-}
-
 .cards .cards-card > a:any-link {
     color: currentcolor;
     text-decoration: none;
@@ -204,4 +196,28 @@
 
 .haematology .cards .cards-card-details a:any-link {
     color: var(--magenta-100);
+}
+
+.haematology .cards .cards-card.cards-card-one {
+    background-color: #e6ccdc;
+}
+
+.haematology .cards .cards-card.cards-card-two {
+    background-color: #f3f7cc;
+}
+
+.haematology .cards .cards-card.cards-card-three {
+    background-color: #f6cce2;
+}
+
+.haematology .cards .cards-card.cards-card-four {
+    background-color: #fceecc;
+}
+
+.haematology .cards .cards-card.cards-card-five {
+    background-color: #e1f6f9;
+}
+
+.haematology .cards .cards-card.cards-card-six {
+    background-color: #d8cfdd;
 }
