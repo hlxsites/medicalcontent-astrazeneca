@@ -48,6 +48,7 @@ function createNavSection(list, navSections, parent = '') {
       }
       item.append(subNavSection);
       link.classList.add('has-subnav');
+      link.addEventListener('click', () => link.classList.toggle('expanded'));
       link.href = window.location.hash || '#';
     }
 
