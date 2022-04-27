@@ -46,7 +46,7 @@ export default async function decorate(block) {
     }
   }
   block.querySelectorAll(':scope > div > div').forEach((card, index) => {
-    const style = classes[(index + 3) % classes.length];
+    const style = classes[(index) % classes.length];
     card.classList.add('cards-card', `cards-card-${style}`);
     if (!card.querySelector(':scope picture')) {
       card.classList.add('no-image');
