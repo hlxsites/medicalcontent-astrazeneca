@@ -1,12 +1,33 @@
-import { getMetadata, toClassName } from '../../scripts/scripts.js';
-
-export default function decorate(block) {
-  // todo: populate based on index
-  const crumbs = [['/', 'Medical Content Hub']];
-  const docTitle = getMetadata('short-title') || document.title;
-  if (!crumbs.find((crumb) => crumb[1] === docTitle)) {
-    crumbs.push([`/${toClassName(docTitle)}`, docTitle]);
+function getTitle(doc) {
+  const shortTitle = doc.head.querySelector('meta[name="short-title"]');
+  if (shortTitle && shortTitle.content) {
+    return shortTitle.content;
   }
+  const title = doc.body.querySelector('h1')
+    || doc.head.querySelector('meta[name="title"]');
+  return title && (title.textContent || title.content);
+}
+
+export default async function decorate(block) {
+  const pathSegments = window.location.pathname.split('/');
+
+  // home
+  const crumbs = [['/', 'Medical Content Hub']];
+
+  // hub
+  const hub = pathSegments[1];
+  let hubTitle = 'Hub';
+  if (hub === 'breast-cancer') {
+    hubTitle = 'Breast Cancer Hub';
+  } else if (hub === 'haematology') {
+    hubTitle = 'Haematology Hub';
+  }
+  crumbs.push([`/${hub}`, hubTitle]);
+
+  // study
+  const studyTitle = getTitle(document) || document.title;
+  crumbs.push([pathSegments.slice(0, 3).join('/'), studyTitle]);
+
   block.querySelector(':scope > div > div').innerHTML = crumbs
     .map((crumb, num) => {
       const [url, title] = crumb;
