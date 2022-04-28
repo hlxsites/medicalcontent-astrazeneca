@@ -10,6 +10,9 @@ function getTitle(doc) {
 
 export default async function decorate(block) {
   const pathSegments = window.location.pathname.split('/');
+  if (pathSegments.length < 3) {
+    return;
+  }
 
   // home
   const crumbs = [['/', 'Medical Content Hub']];
