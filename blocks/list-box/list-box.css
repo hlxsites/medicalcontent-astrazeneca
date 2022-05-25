@@ -5,10 +5,8 @@
   align-content: flex-start;
   box-sizing: border-box;
   max-height: auto;
-
   padding: 1rem;
   background-color: var(--bg-color-accent-100);
-
   list-style: none;
   counter-reset: list-box;
 }
@@ -18,7 +16,6 @@
   padding-left: 3.375rem;
   padding-top: 0.75rem;
   min-height: 2.75rem;
-
   font-size: var(--body-font-size-m);
   counter-increment: list-box;
 }
@@ -28,13 +25,10 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-
   border-radius: 50%;
   width: 2.75rem;
   height: 2.75rem;
-
   background-color: var(--bg-color-accent-600);
-
   content: counter(list-box);
   color: var(--white);
   font-weight: bold;
