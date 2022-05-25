@@ -321,6 +321,7 @@ main .default-content-wrapper h2 {
   text-align: left;
   text-decoration: none;
 }
+
 .homepage main .default-content-wrapper li a::after {
   content: "";
   width: 1.25rem;
