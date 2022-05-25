@@ -55,6 +55,9 @@
   --purple-100: #3c1053;
   --white: #fff;
   --heading-color: #3c4242;
+
+  /* icons */
+  --icn-chevron-right: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20320%20512%22%20fill=%22white%22%20fill-rule=%22evenodd%22%3E%3Cpath%20d=%22M96%20480c-8.188%200-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75%200-45.25L242.8%20256L73.38%2086.63c-12.5-12.5-12.5-32.75%200-45.25s32.75-12.5%2045.25%200l192%20192c12.5%2012.5%2012.5%2032.75%200%2045.25l-192%20192C112.4%20476.9%20104.2%20480%2096%20480z%22/%3E%3C/svg%3E");
 }
 
 html {
@@ -304,17 +307,26 @@ main .default-content-wrapper h2 {
 }
 
 .homepage main .default-content-wrapper li a {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
   background: var(--magenta-100);
   border-radius: 55px;
   color: #fff;
-  display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
   margin: 5px;
   width: calc(100% - 60px);
   max-width: 315px;
   padding: 28px 22px;
   text-align: left;
   text-decoration: none;
+}
+.homepage main .default-content-wrapper li a::after {
+  content: "";
+  width: 1.25rem;
+  height: 1.25rem;
+  background-image: var(--icn-chevron-right);
+  background-repeat: no-repeat;
 }
 
 .homepage main .default-content-wrapper li a:hover {
