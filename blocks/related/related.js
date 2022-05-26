@@ -58,18 +58,17 @@ export default async function decorate(block) {
 
     const link = card.querySelector(':scope a');
     if (link && link.href) {
-      if (!isLocalNav) {
-        try {
-          let { pathname } = new URL(link.href);
-          pathname = pathname.split('/').filter((_, i) => i < 3).join('/');
-          if (window.location.pathname.startsWith(pathname)) {
-            // omit self
-            card.parentElement.remove();
-            return;
-          }
-        } catch (e) {
-          // ignore
+      try {
+        const { pathname } = new URL(link.href);
+        const pathPrefix = pathname.split('/').filter((_, i) => i < 3).join('/');
+        if ((!isLocalNav && window.location.pathname.startsWith(pathPrefix))
+          || window.location.pathname === pathname) {
+          // omit self
+          card.parentElement.remove();
+          return;
         }
+      } catch (e) {
+        // ignore
       }
       const cardLink = document.createElement('a');
       cardLink.href = link.href;
