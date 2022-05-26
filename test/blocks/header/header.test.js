@@ -8,6 +8,7 @@ document.body.innerHTML = await readFile({ path: '../../scripts/dummy.html' });
 
 const { buildBlock, decorateBlock, loadBlock } = await import('../../../scripts/scripts.js');
 
+document.head.innerHTML = await readFile({ path: '../../scripts/head.html' });
 document.body.innerHTML = await readFile({ path: '../../scripts/body.html' });
 
 const sleep = async (time = 1000) => new Promise((resolve) => {
@@ -16,7 +17,7 @@ const sleep = async (time = 1000) => new Promise((resolve) => {
   }, time);
 });
 
-const headerBlock = buildBlock('header', [['Nav', '/test/blocks/header/nav']]);
+const headerBlock = buildBlock('header', []);
 document.querySelector('header').append(headerBlock);
 decorateBlock(headerBlock);
 await loadBlock(headerBlock);
@@ -33,14 +34,5 @@ describe('Header block', () => {
     expect(nav.getAttribute('aria-expanded')).to.equal('true');
     hamburger.click();
     expect(nav.getAttribute('aria-expanded')).to.equal('false');
-  });
-
-  it('Section title shows and hides section', async () => {
-    const section = document.querySelector('.header .nav-section');
-    const title = section.querySelector(':scope h2');
-    title.click();
-    expect(section.getAttribute('aria-expanded')).to.equal('true');
-    title.click();
-    expect(section.getAttribute('aria-expanded')).to.equal('false');
   });
 });
