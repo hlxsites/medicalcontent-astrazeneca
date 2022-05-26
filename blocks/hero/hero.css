@@ -36,10 +36,27 @@ main .hero .hero-shortcuts {
 
 main .hero .hero-shortcuts li {
     list-style: none;
-    padding-left: 30px;
-    background-image: url('/icons/link-chevron-down.svg');
-    background-position: 0 10px;
-    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    margin-bottom: 1rem;
+}
+main .hero .hero-shortcuts li:last-child {
+    margin-bottom: 0;
+}
+
+main .hero .hero-shortcuts li::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 32px;
+    flex-shrink: 0;
+    background-color: var(--link-color, var(--fg-color-link));
+    -webkit-mask: url('/icons/link-chevron-down.svg') no-repeat 0 10px;
+    mask: url('/icons/link-chevron-down.svg') no-repeat 0 10px;
+}
+.haematology main .hero .hero-shortcuts > li::before {
+    --link-color: var(--magenta-100);
 }
 
 main .hero .hero-shortcuts a:any-link {

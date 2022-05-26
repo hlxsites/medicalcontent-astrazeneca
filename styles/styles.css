@@ -113,6 +113,9 @@ a:any-link {
   color: var(--fg-color-link);
   text-decoration: none;
 }
+.haematology a:any-link {
+  color: var(--magenta-100);
+}
 
 a:hover {
   text-decoration: underline;
