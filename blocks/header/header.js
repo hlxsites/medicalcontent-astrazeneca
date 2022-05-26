@@ -112,6 +112,7 @@ export default async function decorate(block) {
   });
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+  nav.classList.add('appear');
 
   // expand by default on desktop
   if (window.innerWidth >= 900) {
