@@ -10,7 +10,7 @@ function getTitle(doc) {
 
 export default async function decorate(block) {
   const pathSegments = window.location.pathname.split('/');
-  if (pathSegments.length < 3) {
+  if (pathSegments.length < 2) {
     return;
   }
 
@@ -25,7 +25,9 @@ export default async function decorate(block) {
   } else if (hub === 'haematology') {
     hubTitle = 'Haematology Hub';
   }
-  crumbs.push([`/${hub}`, hubTitle]);
+  if (pathSegments.length > 2) {
+    crumbs.push([`/${hub}`, hubTitle]);
+  }
 
   // study
   const studyTitle = getTitle(document) || document.title;
