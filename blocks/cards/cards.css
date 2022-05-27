@@ -222,50 +222,106 @@
     background-color: #d8cfdd;
 }
 
-.haematology .cards.cards-fifty-fifty .cards-card {
-    cursor: auto;
+
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container
+    .cards-wrapper) {
+  margin: 40px auto;
 }
-.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details {
-    display: grid;
-    grid-template-columns: 80px auto;
-    grid-template-rows: 80px auto;
-    grid-template-areas: "icon title" "content content";
-    padding: 0;
-    background-color: var(--purple-20);
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card {
+  cursor: auto;
 }
-.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > * {
-    box-sizing: border-box;
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details {
+  display: grid;
+  grid-template-columns: 80px auto;
+  grid-template-rows: 80px auto;
+  grid-template-areas: "icon title" "content content";
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--light-bg, var(--purple-20));
 }
-.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > p:first-of-type {
-    grid-area: icon;
-    margin: 0;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-    background-color: var(--purple-100);
+.breast-cancer .cards-blue-container .cards-card .cards-card-details {
+  --light-bg: var(--bg-color-accent-100);
 }
-.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > p:first-of-type img {
-    width: initial;
-    height: initial;
+
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > * {
+  box-sizing: border-box;
 }
-.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > h3:first-of-type {
-    grid-area: title;
-    margin: 0;
-    font-size: 1.25rem;
-    background-color: var(--purple-100);
-    display: grid;
-    place-items: center;
-    justify-content: start;
-    color: var(--white);
+
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > p:first-of-type {
+  grid-area: icon;
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background-color: var(--dark-bg, var(--purple-100));
 }
-.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > ul:first-of-type {
-    grid-area: content;
-    margin: 0;
-    padding: 45px 25px;
-    padding-left: calc(25px + 1em);
-    width: 100%;
-    height: 100%;
-    font-size: 1.125rem;
+.breast-cancer
+  .cards-blue-container
+  .cards-card
+  .cards-card-details
+  > p:first-of-type {
+  --dark-bg: var(--bg-color-accent-800);
+}
+
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > p:first-of-type
+  img {
+  width: initial;
+  height: initial;
+}
+
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > :where(h3:first-of-type, h4:first-of-type) {
+  grid-area: title;
+  margin: 0;
+  font-size: 1.25rem;
+  background-color: var(--dark-bg, var(--purple-100));
+  display: grid;
+  place-items: center;
+  justify-content: start;
+  color: var(--white);
+}
+.breast-cancer
+  .cards-blue-container
+  .cards-card
+  .cards-card-details
+  > h4:first-of-type {
+  --dark-bg: var(--bg-color-accent-800);
+}
+
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > ul:first-of-type {
+  grid-area: content;
+  margin: 0;
+  padding: 45px 25px;
+  padding-left: calc(25px + 1em);
+  width: 100%;
+  height: 100%;
+  font-size: 1.125rem;
 }
