@@ -199,11 +199,11 @@
 }
 
 .haematology .cards .cards-card.cards-card-one {
-    background-color: #e6ccdc;
+    background-color: var(--purple-20);
 }
 
 .haematology .cards .cards-card.cards-card-two {
-    background-color: #f3f7cc;
+    background-color: var(--purple-20);
 }
 
 .haematology .cards .cards-card.cards-card-three {
@@ -220,4 +220,52 @@
 
 .haematology .cards .cards-card.cards-card-six {
     background-color: #d8cfdd;
+}
+
+.haematology .cards.cards-fifty-fifty .cards-card {
+    cursor: auto;
+}
+.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details {
+    display: grid;
+    grid-template-columns: 80px auto;
+    grid-template-rows: 80px auto;
+    grid-template-areas: "icon title" "content content";
+    padding: 0;
+    background-color: var(--purple-20);
+}
+.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > * {
+    box-sizing: border-box;
+}
+.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > p:first-of-type {
+    grid-area: icon;
+    margin: 0;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background-color: var(--purple-100);
+}
+.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > p:first-of-type img {
+    width: initial;
+    height: initial;
+}
+.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > h3:first-of-type {
+    grid-area: title;
+    margin: 0;
+    font-size: 1.25rem;
+    background-color: var(--purple-100);
+    display: grid;
+    place-items: center;
+    justify-content: start;
+    color: var(--white);
+}
+.haematology .cards.cards-fifty-fifty .cards-card .cards-card-details > ul:first-of-type {
+    grid-area: content;
+    margin: 0;
+    padding: 45px 25px;
+    padding-left: calc(25px + 1em);
+    width: 100%;
+    height: 100%;
+    font-size: 1.125rem;
 }
