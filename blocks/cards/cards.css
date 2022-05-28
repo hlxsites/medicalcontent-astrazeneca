@@ -1,8 +1,7 @@
 .cards {
     margin: 0;
     display: flex;
-    grid-gap: 20px;
-    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
     flex-direction: column;
     text-align: left;
 }
@@ -222,7 +221,6 @@
     background-color: #d8cfdd;
 }
 
-
 :is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
     .cards-blue-container
     .cards-wrapper) {
@@ -239,7 +237,7 @@
   .cards-card-details {
   display: grid;
   grid-template-columns: 80px auto;
-  grid-template-rows: 80px auto;
+  grid-template-rows: 80px repeat(auto-fit, minmax(min-content, 50px));
   grid-template-areas: "icon title" "content content";
   padding: 0;
   width: 100%;
@@ -268,8 +266,6 @@
   padding: 20px;
   width: 100%;
   height: 100%;
-  display: grid;
-  place-items: center;
   background-color: var(--dark-bg, var(--purple-100));
 }
 .breast-cancer
@@ -280,6 +276,17 @@
   --dark-bg: var(--bg-color-accent-800);
 }
 
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > p:first-of-type
+  picture {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  place-items: center;
+}
 :is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
     .cards-blue-container)
   .cards-card
@@ -324,4 +331,32 @@
   width: 100%;
   height: 100%;
   font-size: 1.125rem;
+}
+
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > p:not(:first-of-type) {
+  grid-area: auto / 1 / auto / 3;
+  margin: 0;
+  padding: 0 25px;
+  width: 100%;
+  height: 100%;
+  font-size: 1.125rem;
+}
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > p:not(:first-of-type) {
+  padding-top: 45px;
+}
+:is(.haematology.study .cards.cards-fifty-fifty, .breast-cancer
+    .cards-blue-container)
+  .cards-card
+  .cards-card-details
+  > p:not(:first-of-type):last-of-type {
+  padding-top: 1em;
+  padding-bottom: 45px;
 }
