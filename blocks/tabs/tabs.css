@@ -1,1 +1,31 @@
-/* tabs */
+.haematology .tabs {
+  --btn-color: var(--graphite-100);
+  --btn-background: var(--purple-20);
+  --btn-background--active: var(--purple-80);
+  --btn-background--focus: var(--purple-100);
+}
+.tabs .tabs-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.tabs .tabs-menu-button {
+  display: inline-block;
+  border: none;
+  border-radius: 3em;
+  font-size: 1rem;
+  margin: 0.5em 0.375em;
+  min-width: 230px;
+  width: auto;
+  padding: 18px 30px;
+  background-color: var(--btn-background, var(--bg-color-accent-200));
+  color: var(--btn-color, --fg-color-link);
+}
+.tabs .tabs-menu-button:where(:focus, :hover) {
+  background-color: var(--btn-background--focus, var(--fg-color-dark-blue));
+  color: #fff;
+}
+.tabs .tabs-menu-button--active {
+  background-color: var(--btn-background--active, var(--bg-color-accent-600));
+  color: #fff;
+}
