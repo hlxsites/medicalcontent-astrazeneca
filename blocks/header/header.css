@@ -148,6 +148,10 @@ header a.nav-item:any-link {
   padding: 8px 16px 8px 46px;
   text-decoration: none;
   border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 10px;
 }
 
 header a.nav-item.nav-item-active,
@@ -176,14 +180,16 @@ header .nav ul li a.has-subnav {
 }
 
 header .nav ul li a.has-subnav::after {
-  content: " ";
-  position: absolute;
-  right: 20px;
-  width: 20px;
-  height: 28px;
-  background-image: url('/icons/link-chevron-down.svg');
-  background-position: 0 9px;
-  background-repeat: no-repeat;
+  content: "";
+  width: 18px;
+  height: 10px;
+  background-color: var(--graphite-100);
+  -webkit-mask: url('/icons/link-chevron-down.svg') no-repeat;
+  -webkit-mask-size: contain;
+  mask: url('/icons/link-chevron-down.svg') no-repeat;
+  mask-size: contain;
+  transform: rotate(-90deg);
+  transition: all 50ms cubic-bezier(.165,.84,.44,1);
 }
 
 header .nav[aria-expanded='false'] ul li a.has-subnav::after {
@@ -191,7 +197,7 @@ header .nav[aria-expanded='false'] ul li a.has-subnav::after {
 }
 
 header .nav ul li a.has-subnav.expanded::after {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 header .nav > .nav-sections > .nav-section > ul > li > a.nav-item-introduction {
