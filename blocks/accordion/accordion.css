@@ -30,6 +30,7 @@ main .section.accordion-container {
     font-size: 40px;
     line-height: 40px;
 }
+
 .haematology .accordion-item-title::after {
     color: var(--magenta-100);
 }
