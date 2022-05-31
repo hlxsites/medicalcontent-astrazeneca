@@ -1,15 +1,17 @@
 .haematology .tabs {
   --btn-color: var(--graphite-100);
   --btn-background: var(--purple-20);
-  --btn-background--active: var(--purple-80);
-  --btn-background--focus: var(--purple-100);
+  --btn-background-active: var(--purple-80);
+  --btn-background-focus: var(--purple-100);
   --lnk-background: var(--magenta-100);
 }
+
 .tabs .tabs-menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .tabs .tabs-menu-button {
   display: inline-block;
   border: none;
@@ -22,41 +24,49 @@
   background-color: var(--btn-background, var(--bg-color-accent-200));
   color: var(--btn-color, --fg-color-dark-blue);
 }
+
 .tabs .tabs-menu-button:where(:focus-visible, :hover) {
-  background-color: var(--btn-background--focus, var(--fg-color-dark-blue));
+  background-color: var(--btn-background-focus, var(--fg-color-dark-blue));
   color: #fff;
 }
-.tabs .tabs-menu-button--active {
-  background-color: var(--btn-background--active, var(--bg-color-accent-600));
+
+.tabs .tabs-menu-button-active {
+  background-color: var(--btn-background-active, var(--bg-color-accent-600));
   color: #fff;
 }
-.tabs .tabs-menu-button--active:where(:focus-visible, :hover) {
-  background-color: var(--btn-background--focus, var(--fg-color-dark-blue));
+
+.tabs .tabs-menu-button-active:where(:focus-visible, :hover) {
+  background-color: var(--btn-background-focus, var(--fg-color-dark-blue));
 }
 
 .tabs-tab {
   display: block;
 }
+
 .tabs-tab > div:first-child {
   display: none;
 }
-.tabs-tab--hidden {
+
+.tabs-tab-hidden {
   display: none;
 }
 
 .tabs-tab .tabs-tab-content p {
   margin: 2.5em 0;
 }
+
 .tabs-tab .tabs-tab-content p img {
-  min-height: 250px;
   max-height: 450px;
 }
+
 .tabs-tab .tabs-tab-content p:last-of-type {
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 1rem;
+  flex-flow: row wrap;
+  gap: 1rem;
 }
+
 .tabs-tab .tabs-tab-content p:last-of-type a:any-link {
   border: none;
   border-radius: 3em;

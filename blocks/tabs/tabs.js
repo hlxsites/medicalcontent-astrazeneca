@@ -1,25 +1,25 @@
-import { loadBlock } from "/scripts/scripts.js";
+import { loadBlock } from '../../scripts/scripts.js';
 
 /**
  * @param {HTMLDivElement} block
  */
 function decorateBlock(block) {
-  block.classList.add("references-container");
+  block.classList.add('references-container');
 }
 
 function decorateTabs(block) {
-  const tabs = [...block.querySelectorAll(":scope > div")];
+  const tabs = [...block.querySelectorAll(':scope > div')];
   tabs.forEach((tab, idx) => {
-    tab.classList.add("tabs-tab");
+    tab.classList.add('tabs-tab');
     if (idx > 0) {
-      tab.classList.add("tabs-tab--hidden");
+      tab.classList.add('tabs-tab-hidden');
     }
     tab.dataset.tab = idx + 1;
 
     tab
-      .querySelector(":scope > div:nth-child(2)")
-      .classList.add("tabs-tab-content");
-    tab.querySelector(":scope > div:last-child").classList.add("references");
+      .querySelector(':scope > div:nth-child(2)')
+      .classList.add('tabs-tab-content');
+    tab.querySelector(':scope > div:last-child').classList.add('references');
   });
 }
 
@@ -27,16 +27,16 @@ function decorateTabs(block) {
  * @param {HTMLDivElement} block
  */
 function createTabsMenu(block) {
-  const tabs = [...block.querySelectorAll(":scope > div.tabs-tab")];
-  const tabsBtn = tabs.map((tab) => tab.querySelector(":scope > div"));
+  const tabs = [...block.querySelectorAll(':scope > div.tabs-tab')];
+  const tabsBtn = tabs.map((tab) => tab.querySelector(':scope > div'));
 
-  const tabsMenu = document.createElement("div");
-  tabsMenu.className = "tabs-menu";
+  const tabsMenu = document.createElement('div');
+  tabsMenu.className = 'tabs-menu';
   tabsBtn.forEach((tab, idx) => {
-    const btn = document.createElement("button");
-    btn.classList.add("tabs-menu-button");
+    const btn = document.createElement('button');
+    btn.classList.add('tabs-menu-button');
     if (idx === 0) {
-      btn.classList.add("tabs-menu-button--active");
+      btn.classList.add('tabs-menu-button-active');
     }
     btn.innerText = tab.innerText;
     btn.dataset.tab = idx + 1;
@@ -46,19 +46,18 @@ function createTabsMenu(block) {
 }
 
 function initEvents(block) {
-  document.querySelectorAll("button.tabs-menu-button").forEach((button) => {
-    button.addEventListener("click", () => {
-      button.parentElement
-        .querySelectorAll("button.tabs-menu-button")
-        .forEach((button) =>
-          button.classList.remove("tabs-menu-button--active")
-        );
-      button.classList.add("tabs-menu-button--active");
+  const buttons = block.querySelectorAll('button.tabs-menu-button');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      buttons.forEach((btn) => {
+        btn.classList.remove('tabs-menu-button-active');
+      });
+      button.classList.add('tabs-menu-button-active');
       const tabId = button.dataset.tab;
-      block.querySelectorAll("div.tabs-tab").forEach((tab) => {
-        tab.classList.add("tabs-tab--hidden");
+      block.querySelectorAll('div.tabs-tab').forEach((tab) => {
+        tab.classList.add('tabs-tab-hidden');
         if (tab.dataset.tab === tabId) {
-          tab.classList.remove("tabs-tab--hidden");
+          tab.classList.remove('tabs-tab-hidden');
         }
       });
     });
@@ -70,15 +69,15 @@ function initEvents(block) {
  * @param {HTMLDivElement} block
  */
 async function loadReferences(block) {
-  const referencesBlock = block.querySelector(".references");
-  referencesBlock.dataset.blockName = "references";
+  const referencesBlock = block.querySelector('.references');
+  referencesBlock.dataset.blockName = 'references';
   return loadBlock(referencesBlock);
 }
 
-export default async function initializeTabs(block, blockName, doc, isEager) {
+export default async function initializeTabs(block) {
   decorateBlock(block);
   decorateTabs(block);
   createTabsMenu(block);
   initEvents(block);
-  return await loadReferences(block);
+  return loadReferences(block);
 }

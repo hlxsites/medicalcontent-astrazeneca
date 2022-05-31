@@ -114,12 +114,13 @@ a:any-link {
   color: var(--fg-color-dark-blue);
   text-decoration: none;
 }
-.haematology a:any-link {
-  color: var(--magenta-100);
+
+a:any-link:hover {
+  text-decoration: underline;
 }
 
-a:hover {
-  text-decoration: underline;
+.haematology a:any-link {
+  color: var(--magenta-100);
 }
 
 code, pre, samp {
