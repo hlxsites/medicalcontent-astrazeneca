@@ -25,10 +25,14 @@ main .section.accordion-container {
 }
 
 .accordion-item-title::after {
-    color: #D1016F;
+    color: var(--fg-color-dark-blue);
     content: "+";
     font-size: 40px;
     line-height: 40px;
+}
+
+.haematology .accordion-item-title::after {
+    color: var(--magenta-100);
 }
 
 .accordion-segment.accordion-open > .accordion-item-title::after {

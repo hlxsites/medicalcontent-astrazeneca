@@ -16,12 +16,6 @@ main .hero::before {
     background-repeat: no-repeat;
     background-size: contain;
 }
-.haematology:not(.hub) main .hero {
-    padding-top: 0;
-}
-.haematology:not(.hub) main .hero::before {
-    content: none;
-}
 
 .breast-cancer main .hero::before {
     width: 155px;
@@ -29,10 +23,11 @@ main .hero::before {
     top: 18px;
     background-image: url('/icons/logo-daiichi.svg');
 }
+
 .breast-cancer main .hero::after {
     position: absolute;
     top: 10px;
-    right: 0px;
+    right: 0;
     content: " ";
     width: 112px;
     height: 27px;
@@ -50,6 +45,7 @@ main .hero h1 {
     padding-bottom: 20px;
     border-bottom: solid 1px #e1eff8;
 }
+
 .haematology main .hero h1 {
     font-style: italic;
 }
@@ -70,6 +66,7 @@ main .hero .hero-shortcuts li {
     column-gap: 10px;
     margin-bottom: 1rem;
 }
+
 main .hero .hero-shortcuts li:last-child {
     margin-bottom: 0;
 }
@@ -80,10 +77,12 @@ main .hero .hero-shortcuts li::before {
     width: 20px;
     height: 32px;
     flex-shrink: 0;
-    background-color: var(--link-color, var(--fg-color-link));
+    background-color: var(--link-color, var(--fg-color-dark-blue));
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-mask: url('/icons/link-chevron-down.svg') no-repeat 0 10px;
     mask: url('/icons/link-chevron-down.svg') no-repeat 0 10px;
 }
+
 .haematology main .hero .hero-shortcuts > li::before {
     --link-color: var(--magenta-100);
 }
@@ -148,6 +147,7 @@ main .hero .hero-shortcuts a:hover {
     top: 0;
     background-image: url('/icons/astrazeneca.svg');
 }
+
 .hub main .hero::after {
     content: none;
 }
@@ -157,6 +157,14 @@ main .hero .hero-shortcuts a:hover {
     font-size: 50px;
     font-weight: 400;
     font-style: italic;
+}
+
+.haematology:not(.hub) main .hero {
+    padding-top: 0;
+}
+
+.haematology:not(.hub) main .hero::before {
+    content: none;
 }
 
 @media (min-width: 900px) {

@@ -70,7 +70,7 @@ main .related > div {
   width: 100%;
   vertical-align: bottom;
   flex-grow: 1;
-  color: var(--fg-color-link);
+  color: var(--fg-color-dark-blue);
   font-size: 16px;
   font-weight: 800;
 }
