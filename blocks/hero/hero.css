@@ -80,7 +80,7 @@ main .hero .hero-shortcuts li::before {
     width: 20px;
     height: 32px;
     flex-shrink: 0;
-    background-color: var(--link-color, var(--fg-color-link));
+    background-color: var(--link-color, var(--fg-color-dark-blue));
     -webkit-mask: url('/icons/link-chevron-down.svg') no-repeat 0 10px;
     mask: url('/icons/link-chevron-down.svg') no-repeat 0 10px;
 }

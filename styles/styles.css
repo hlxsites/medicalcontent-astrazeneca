@@ -46,7 +46,6 @@
   --bg-color-accent-800: #00acea;
   --fg-color-black: #333;
   --fg-color-dark-blue: #204194;
-  --fg-color-link: #204194;
   --graphite-20: #d8dada;
   --graphite-100: #3c4242;
   --magenta-100: #d0006f;
@@ -112,7 +111,7 @@ p, dl, ol, ul, pre, blockquote {
 }
 
 a:any-link {
-  color: var(--fg-color-link);
+  color: var(--fg-color-dark-blue);
   text-decoration: none;
 }
 .haematology a:any-link {
