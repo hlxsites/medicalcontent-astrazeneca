@@ -1,0 +1,94 @@
+main .modal-content-container {
+  visibility: hidden;
+  pointer-events: none;
+  box-sizing: border-box;
+  margin: 0;
+  margin-left: var(--main-padding-left);
+  padding: 0;
+  border-radius: 0;
+  background-color: rgba(23 23 23 / 50%);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: visibility ease 300ms;
+}
+
+main .modal-content-container.is-open {
+  visibility: visible;
+  pointer-events: all;
+}
+
+main .modal-content-container .modal-content-wrapper {
+  margin: 0 1em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(110%);
+  transition: transform ease 300ms;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-content-container.is-open .modal-content-wrapper {
+  transform: translateY(0);
+}
+
+.modal-content {
+  border-radius: 1em 1em 0 0;
+  width: var(--main-width);
+  max-width: var(--main-max-width);
+  background-color: var(--white);
+  position: relative;
+}
+
+.modal-content .modal-content-header {
+  padding: 0 27px;
+  min-height: 160px;
+  border-bottom: 1px solid var(--graphite-20);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content .modal-content-header :where(h1, h2, h3, h4, h5, h6) {
+  font-size: 2rem;
+}
+
+.modal-content .modal-content-header .modal-content-close {
+  box-sizing: border-box;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  background-image: url("/icons/modal-close.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.modal-content .modal-content-content {
+  padding: 0 27px;
+  min-height: 300px;
+  margin-top: 2rem;
+}
+
+.modal-content .modal-content-content p {
+  text-align: center;
+}
+
+.modal-content .modal-content-content img {
+  max-width: 100%;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+}
