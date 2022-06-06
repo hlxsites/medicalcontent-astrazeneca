@@ -142,6 +142,10 @@ pre {
   overflow: scroll;
 }
 
+header .nav-sections {
+  display: none;
+}
+
 main input, main button {
   font-size: 1.25rem;
   width: 100%;
