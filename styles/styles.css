@@ -84,8 +84,14 @@ body.appear {
 }
 
 main {
-  margin: 0 20px;
+  --main-width: calc(100vw - 40px);
+  --main-max-width: var(--main-width);
+  --main-margin: 0 20px;
+
+  margin: var(--main-margin);
   padding: 0;
+  width: var(--main-width);
+  max-width: var(--main-max-width);
 }
 
 h1, h2, h3,
@@ -218,7 +224,13 @@ main img {
 
 @media (min-width: 600px) {
   main {
-    margin: 0 60px;
+    --main-width: calc(100vw - 120px);
+    --main-max-width: var(--main-width);
+    --main-margin: 0 60px;
+
+    margin: var(--main-margin);
+    width: var(--main-width);
+    max-width: var(--main-max-width);
   }
 }
 
@@ -235,10 +247,11 @@ main img {
   main {
     --main-width: calc(100vw - 180px);
     --main-max-width: 1100px;
+    --main-margin: 0 auto;
 
     width: var(--main-width);
     max-width: var(--main-max-width);
-    margin: 0 auto;
+    margin: var(--main-margin);
   }
 
   .nav-expanded main {
