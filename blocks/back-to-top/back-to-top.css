@@ -1,0 +1,31 @@
+/* stylelint-disable property-no-vendor-prefix */
+.back-to-top > div > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-to-top .back-to-top-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.back-to-top .back-to-top-link::after {
+  content: '';
+  width: 18px;
+  height: 10px;
+  background-color: var(--fg-color-dark-blue);
+  -webkit-mask: url('/icons/link-chevron-down.svg') no-repeat;
+  -webkit-mask-size: contain;
+  mask: url('/icons/link-chevron-down.svg') no-repeat;
+  mask-size: contain;
+  transform: rotate(180deg);
+}
+
+.haematology .back-to-top .back-to-top-link::after {
+  background-color: var(--magenta-100);
+}

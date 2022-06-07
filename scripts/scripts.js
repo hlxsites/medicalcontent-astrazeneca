@@ -583,6 +583,55 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * decorates a single section with a back-to-top button
+ * @param {HTMLDivElement} section
+ */
+async function decorateSectionWithBackToTop(section) {
+  const backToTop = document.createElement('a');
+  backToTop.classList.add('back-to-top-link');
+  backToTop.textContent = 'Back to top';
+  backToTop.href = '#';
+
+  const block = buildBlock('back-to-top', {
+    elems: [backToTop],
+  });
+  section.append(block);
+  decorateBlock(block);
+  await loadBlock(block);
+}
+
+/**
+ * Decorate all sections with a "back-to-top" button
+ * @param {Element} main
+ */
+function decorateSectionsWithBackToTop(main) {
+  const ignoreContainers = new Set([
+    'breadcrumbs-container',
+    'hero-container',
+    'modal-content-container',
+    'related-container',
+    'fragment-container',
+    'cards-container',
+    'disclaimers-container',
+  ]);
+  const sections = [...main.querySelectorAll('.section')].filter((section) => {
+    if (!section.hasChildNodes()) {
+      return false;
+    }
+
+    const { classList } = section;
+    let passThrough = true;
+    classList.forEach((className) => {
+      if (!passThrough || ignoreContainers.has(className)) {
+        passThrough = false;
+      }
+    });
+    return passThrough;
+  });
+  sections.forEach((section) => decorateSectionWithBackToTop(section));
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -594,6 +643,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateSectionsWithBackToTop(main);
 }
 
 /**
