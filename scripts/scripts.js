@@ -617,7 +617,7 @@ function decorateSectionsWithBackToTop(main) {
       return false;
     }
 
-    if(!document.documentElement.classList.contains('study')) {
+    if (!document.documentElement.classList.contains('study')) {
       return false;
     }
 
