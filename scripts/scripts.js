@@ -611,11 +611,13 @@ function decorateSectionsWithBackToTop(main) {
     'modal-content-container',
     'related-container',
     'fragment-container',
-    'cards-container',
-    'disclaimers-container',
   ]);
   const sections = [...main.querySelectorAll('.section')].filter((section) => {
     if (!section.hasChildNodes()) {
+      return false;
+    }
+
+    if(!document.documentElement.classList.contains('study')) {
       return false;
     }
 
