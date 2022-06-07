@@ -84,8 +84,14 @@ body.appear {
 }
 
 main {
-  margin: 0 20px;
+  --main-width: calc(100vw - 40px);
+  --main-max-width: var(--main-width);
+  --main-margin: 0 20px;
+
+  margin: var(--main-margin);
   padding: 0;
+  width: var(--main-width);
+  max-width: var(--main-max-width);
 }
 
 h1, h2, h3,
@@ -134,6 +140,10 @@ code, samp {
 
 pre {
   overflow: scroll;
+}
+
+header .nav-sections {
+  display: none;
 }
 
 main input, main button {
@@ -218,7 +228,13 @@ main img {
 
 @media (min-width: 600px) {
   main {
-    margin: 0 60px;
+    --main-width: calc(100vw - 120px);
+    --main-max-width: var(--main-width);
+    --main-margin: 0 60px;
+
+    margin: var(--main-margin);
+    width: var(--main-width);
+    max-width: var(--main-max-width);
   }
 }
 
@@ -233,14 +249,21 @@ main img {
   }
 
   main {
-    width: calc(100% - 180px);
-    max-width: 1100px;
-    margin: 0 auto;
+    --main-width: calc(100vw - 180px);
+    --main-max-width: 1100px;
+    --main-margin: 0 auto;
+
+    width: var(--main-width);
+    max-width: var(--main-max-width);
+    margin: var(--main-margin);
   }
 
   .nav-expanded main {
-    width: calc(100% - 320px);
-    padding-left: 250px;
+    --main-width: calc(100vw - 320px);
+    --main-padding-left: 250px;
+
+    width: var(--main-width);
+    padding-left: var(--main-padding-left);
   }
 
   main .section {
@@ -290,7 +313,9 @@ main .default-content-wrapper h2 {
   }
 
   .study body.nav-expanded main {
-    padding-left: 280px;
+    --main-padding-left: 280px;
+
+    padding-left: var(--main-padding-left);
   }
 }
 
