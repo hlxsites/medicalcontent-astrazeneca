@@ -1,0 +1,22 @@
+.modal-triggers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+
+.modal-triggers a.modal-trigger-link {
+  border: none;
+  border-radius: 3em;
+  padding: 16px 24px;
+  font-size: 18px;
+  color: var(--white);
+  background-color: var(--lnk-background, var(--fg-color-dark-blue));
+  text-decoration: none;
+  line-height: normal;
+}
+
+.haematology .modal-triggers {
+  --lnk-background: var(--magenta-100);
+}

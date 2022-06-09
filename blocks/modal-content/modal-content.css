@@ -55,6 +55,7 @@ main .modal-content-container .modal-content-wrapper {
 }
 
 .modal-content .modal-content-header :where(h1, h2, h3, h4, h5, h6) {
+  margin: 4rem 0 3rem;
   font-size: 2rem;
 }
 
@@ -80,6 +81,10 @@ main .modal-content-container .modal-content-wrapper {
   padding: 0 27px;
   min-height: 300px;
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
 }
 
 .modal-content .modal-content-content p {
@@ -93,7 +98,6 @@ main .modal-content-container .modal-content-wrapper {
   height: auto;
   object-fit: contain;
   object-position: center;
-  aspect-ratio: 4 / 3;
 }
 
 @media (min-width: 600px) {

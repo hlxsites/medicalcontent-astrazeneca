@@ -125,10 +125,6 @@ a:any-link:hover {
   text-decoration: underline;
 }
 
-.haematology a:any-link {
-  color: var(--magenta-100);
-}
-
 code, pre, samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
@@ -350,6 +346,10 @@ main .default-content-wrapper h2 {
   padding: 28px 22px;
   text-align: left;
   text-decoration: none;
+}
+
+:where(.haematology) a:any-link {
+  color: var(--magenta-100);
 }
 
 .homepage main .default-content-wrapper li a::after {
