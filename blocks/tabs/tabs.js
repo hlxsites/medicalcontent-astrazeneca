@@ -1,4 +1,40 @@
-import { loadBlock } from '../../scripts/scripts.js';
+import { loadBlocks } from '../../scripts/scripts.js';
+
+/**
+ * @param {NodeListOf<Element>} modalTriggers
+ */
+function cleanupPreviousModalTriggers(modalTriggers) {
+  const modalTriggerParents = new Set();
+  modalTriggers.forEach((triggerLink) => {
+    modalTriggerParents.add(triggerLink.parentElement);
+    triggerLink.remove();
+  });
+  modalTriggerParents.forEach((parent) => {
+    if (!parent.hasChildNodes()) {
+      parent.remove();
+    }
+  });
+}
+
+/**
+ * @param {HTMLDivElement} block
+ */
+function decorateModalTriggers(block) {
+  const tabs = block.querySelectorAll('.tabs-tab');
+
+  tabs.forEach((tab) => {
+    const modalTriggers = tab.querySelectorAll('a[href^="bookmark://modals/"]');
+    const modalTriggersCopy = [...modalTriggers].map((trigger) => trigger.cloneNode(true));
+
+    const container = document.createElement('div');
+    container.className = 'modal-triggers block';
+    container.dataset.blockName = 'modal-triggers';
+    container.append(...modalTriggersCopy);
+
+    tab.querySelector('.tabs-tab-content').append(container);
+    cleanupPreviousModalTriggers(modalTriggers);
+  });
+}
 
 /**
  * @param {HTMLDivElement} block
@@ -68,16 +104,17 @@ function initEvents(block) {
  * load the references block if not loaded
  * @param {HTMLDivElement} block
  */
-async function loadReferences(block) {
+function decorateReferences(block) {
   const referencesBlock = block.querySelector('.references');
   referencesBlock.dataset.blockName = 'references';
-  return loadBlock(referencesBlock);
 }
 
 export default async function initializeTabs(block) {
   decorateBlock(block);
   decorateTabs(block);
   createTabsMenu(block);
+  decorateModalTriggers(block);
+  decorateReferences(block);
   initEvents(block);
-  return loadReferences(block);
+  return loadBlocks(document.querySelector('main'));
 }
