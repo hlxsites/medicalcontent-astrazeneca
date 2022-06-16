@@ -518,6 +518,15 @@ initHlx();
  */
 
 /**
+ * executes something as soon as the main thread is free
+ * @param {Function} cb
+ * @returns void
+ */
+export function requestIdleCallback(cb) {
+  return (window.requestIdleCallback || setTimeout)(cb);
+}
+
+/**
 * @param {string} str
 */
 export function stringToHTML(str) {

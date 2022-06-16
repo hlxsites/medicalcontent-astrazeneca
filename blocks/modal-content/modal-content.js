@@ -1,3 +1,5 @@
+import { loadBlocks, requestIdleCallback } from '../../scripts/scripts.js';
+
 /**
  * @param {string} href
  */
@@ -39,18 +41,47 @@ class Modal {
     const dom = new DOMParser().parseFromString(resp, 'text/html');
 
     set.forEach((modalIndex) => {
-      const modalContents = dom.querySelectorAll(
-        `div.modal-content:nth-child(${modalIndex}) > div > div > *`,
+      const modalContainer = dom.querySelector(
+        `div.modal-content:nth-child(${modalIndex})`,
       );
-      const header = modalContents[0];
-      const contents = [...modalContents].slice(1);
+
+      const header = modalContainer.querySelector(
+        ':scope > div:first-child :where(h1, h2, h3, h4)',
+      );
+      header.remove();
+
+      let [mainContent, highlightContent, references, ...rest] = [
+        ...modalContainer.querySelectorAll(
+          `div.modal-content:nth-child(${modalIndex}) > div`,
+        ),
+      ];
+      mainContent.classList.add('modal-content-main');
+
+      if (!references) {
+        references = highlightContent;
+        highlightContent = null;
+      }
+      if (highlightContent) {
+        highlightContent.classList.add('modal-content-highlight');
+      }
+      if (references) {
+        references.classList.add('block', 'references');
+        references.dataset.blockName = 'references';
+      }
+
+      const contents = [
+        mainContent,
+        highlightContent,
+        references,
+        ...rest,
+      ].filter((block) => Boolean(block));
       this.#preloaded.set(`${group}/${modalIndex}`, { header, contents });
     });
 
     // cleanup references to other unused DOM nodes from the preloaded modals
     this.#preloaded.forEach((modal) => {
       modal.header.remove();
-      modal.contents.forEach((content) => content.remove());
+      modal.contents.forEach((content) => content && content.remove());
     });
   }
 
@@ -72,7 +103,9 @@ class Modal {
       tasks = tasks
         .then(() => fetch(getModalsAddress(group)))
         .then((req) => req.text())
-        .then((text) => this.#processAndSaveModal(text, group, triggerLinks[group]));
+        .then((text) =>
+          this.#processAndSaveModal(text, group, triggerLinks[group]),
+        );
     });
   }
 
@@ -93,9 +126,29 @@ class Modal {
       'button.modal-content-close',
     );
     const modalTriggerLinks = getModalTriggerLinks();
+    const openModal = () => {
+      document.body.style.overflow = 'hidden';
+      modalContainer.classList.add('is-open');
+      document.addEventListener('keyup', onEsc, { passive: true });
+    };
     const closeModal = () => {
       document.body.style.removeProperty('overflow');
       modalContainer.classList.remove('is-open');
+      document.removeEventListener('keyup', onEsc);
+    };
+    const onEsc = (ev) => {
+      if (ev.key === 'Escape') closeModal();
+      console.log(ev);
+    };
+    const loadModalContent = (href) => {
+      const modalContents = this.#preloaded.get(getModalTriggerLinkKey(href));
+      modalContainer
+        .querySelector('.modal-content-header')
+        .replaceChildren(modalContents.header, modalCloseBtn);
+      modalContainer
+        .querySelector('.modal-content-content')
+        .replaceChildren(...modalContents.contents);
+      requestIdleCallback(() => loadBlocks(modalContainer));
     };
 
     modalCloseBtn.addEventListener('click', closeModal);
@@ -104,27 +157,14 @@ class Modal {
         closeModal();
       }
     });
-    document.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Escape') {
-        closeModal();
-      }
-    });
 
     modalTriggerLinks.forEach((link) => {
+      link.addEventListener('mousedown', (ev) =>
+        loadModalContent(ev.target.href),
+      );
       link.addEventListener('click', (ev) => {
         ev.preventDefault();
-        const modalContents = this.#preloaded.get(
-          getModalTriggerLinkKey(link.href),
-        );
-        modalContainer
-          .querySelector('.modal-content-header')
-          .replaceChildren(modalContents.header, modalCloseBtn);
-        modalContainer
-          .querySelector('.modal-content-content')
-          .replaceChildren(...modalContents.contents);
-
-        document.body.style.overflow = 'hidden';
-        modalContainer.classList.add('is-open');
+        openModal();
       });
     });
   }

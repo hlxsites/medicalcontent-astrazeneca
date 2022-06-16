@@ -35,7 +35,7 @@ main .modal-content-container .modal-content-wrapper {
 
 .modal-content-container.is-open .modal-content-wrapper {
   transform: translateY(0);
-  transition: transform var(--modal-transition-duration) ease 50ms;
+  transition: transform var(--modal-transition-duration) ease;
 }
 
 .modal-content {
@@ -85,10 +85,6 @@ main .modal-content-container .modal-content-wrapper {
   max-height: 480px;
   overflow: hidden;
   overflow-y: auto;
-}
-
-.modal-content .modal-content-content p {
-  text-align: center;
 }
 
 .modal-content .modal-content-content img {
