@@ -1,4 +1,6 @@
 main .modal-content-container {
+  --modal-transition-duration: 300ms;
+
   visibility: hidden;
   pointer-events: none;
   box-sizing: border-box;
@@ -13,7 +15,6 @@ main .modal-content-container {
   left: 0;
   right: 0;
   bottom: 0;
-  transition: visibility ease 300ms;
 }
 
 main .modal-content-container.is-open {
@@ -28,13 +29,13 @@ main .modal-content-container .modal-content-wrapper {
   right: 0;
   bottom: 0;
   transform: translateY(110%);
-  transition: transform ease 300ms;
   display: flex;
   justify-content: center;
 }
 
 .modal-content-container.is-open .modal-content-wrapper {
   transform: translateY(0);
+  transition: transform var(--modal-transition-duration) ease 50ms;
 }
 
 .modal-content {
@@ -78,13 +79,12 @@ main .modal-content-container .modal-content-wrapper {
 }
 
 .modal-content .modal-content-content {
+  margin-top: 2rem;
   padding: 0 27px;
   min-height: 300px;
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column nowrap;
+  max-height: 480px;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .modal-content .modal-content-content p {
@@ -92,6 +92,7 @@ main .modal-content-container .modal-content-wrapper {
 }
 
 .modal-content .modal-content-content img {
+  visibility: visible;
   max-width: 100%;
   max-height: 300px;
   width: auto;

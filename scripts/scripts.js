@@ -517,6 +517,13 @@ initHlx();
  * ------------------------------------------------------------
  */
 
+/**
+* @param {string} str
+*/
+export function stringToHTML(str) {
+  return new DOMParser().parseFromString(str, 'text/html').body;
+}
+
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 const RUM_GENERATION = 'project-1'; // add your RUM generation information here
 const PRODUCTION_DOMAINS = ['medicalcontent.astrazeneca.com'];
