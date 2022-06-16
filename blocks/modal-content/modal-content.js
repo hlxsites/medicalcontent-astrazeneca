@@ -50,6 +50,7 @@ class Modal {
       );
       header.remove();
 
+      // eslint-disable-next-line prefer-const
       let [mainContent, highlightContent, references, ...rest] = [
         ...modalContainer.querySelectorAll(
           `div.modal-content:nth-child(${modalIndex}) > div`,
@@ -103,9 +104,7 @@ class Modal {
       tasks = tasks
         .then(() => fetch(getModalsAddress(group)))
         .then((req) => req.text())
-        .then((text) =>
-          this.#processAndSaveModal(text, group, triggerLinks[group]),
-        );
+        .then((text) => this.#processAndSaveModal(text, group, triggerLinks[group]));
     });
   }
 
@@ -126,20 +125,6 @@ class Modal {
       'button.modal-content-close',
     );
     const modalTriggerLinks = getModalTriggerLinks();
-    const openModal = () => {
-      document.body.style.overflow = 'hidden';
-      modalContainer.classList.add('is-open');
-      document.addEventListener('keyup', onEsc, { passive: true });
-    };
-    const closeModal = () => {
-      document.body.style.removeProperty('overflow');
-      modalContainer.classList.remove('is-open');
-      document.removeEventListener('keyup', onEsc);
-    };
-    const onEsc = (ev) => {
-      if (ev.key === 'Escape') closeModal();
-      console.log(ev);
-    };
     const loadModalContent = (href) => {
       const modalContents = this.#preloaded.get(getModalTriggerLinkKey(href));
       modalContainer
@@ -150,6 +135,21 @@ class Modal {
         .replaceChildren(...modalContents.contents);
       requestIdleCallback(() => loadBlocks(modalContainer));
     };
+    const closeModal = () => {
+      document.body.style.removeProperty('overflow');
+      modalContainer.classList.remove('is-open');
+    };
+    const onEsc = (ev) => {
+      if (ev.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keyup', onEsc);
+      }
+    };
+    const openModal = () => {
+      document.body.style.overflow = 'hidden';
+      modalContainer.classList.add('is-open');
+      document.addEventListener('keyup', onEsc, { passive: true });
+    };
 
     modalCloseBtn.addEventListener('click', closeModal);
     modalContainer.addEventListener('click', (ev) => {
@@ -159,9 +159,7 @@ class Modal {
     });
 
     modalTriggerLinks.forEach((link) => {
-      link.addEventListener('mousedown', (ev) =>
-        loadModalContent(ev.target.href),
-      );
+      link.addEventListener('mousedown', (ev) => loadModalContent(ev.target.href));
       link.addEventListener('click', (ev) => {
         ev.preventDefault();
         openModal();
