@@ -3,6 +3,9 @@ import fetchNav from '../shared/nav.js';
 
 function createCards(list, parent) {
   const cards = [];
+  const baseURL = new URL(document.location.href);
+  baseURL.pathname = baseURL.pathname.split('/').slice(0, 3).join('/');
+
   list.querySelectorAll(':scope > li').forEach((item, i) => {
     // skip first two root links
     if (parent || i > 1) {
@@ -18,7 +21,7 @@ function createCards(list, parent) {
         const h2 = card.appendChild(document.createElement('h2'));
         const link = h2.appendChild(document.createElement('a'));
         link.textContent = title;
-        link.href = `./${parent || ''}${safeTitle}`;
+        link.href = `${baseURL.href}/${parent || ''}${safeTitle}`;
         cards.push(wrapper);
       }
     }
