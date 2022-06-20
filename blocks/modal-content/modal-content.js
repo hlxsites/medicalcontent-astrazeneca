@@ -173,10 +173,18 @@ class Modal {
     });
 
     modalTriggerLinks.forEach((link) => {
-      link.addEventListener('');
+      let modalLoaded = false;
+      link.addEventListener('touchstart', (ev) => {
+        modalLoaded = true;
+        this.#loadModalContent(ev.target.href);
+      });
       link.addEventListener('click', (ev) => {
         ev.preventDefault();
-        this.#loadModalContent(ev.target.href);
+        if (modalLoaded) {
+          modalLoaded = false;
+        } else {
+          this.#loadModalContent(ev.target.href);
+        }
         this.#openModal();
       });
     });

@@ -1,5 +1,5 @@
 main .modal-content-container {
-  --modal-transition-duration: 300ms;
+  --modal-transition-duration: 200ms;
 
   visibility: hidden;
   pointer-events: none;
@@ -36,7 +36,7 @@ main .modal-content-container .modal-content-wrapper {
 
 .modal-content-container.is-open .modal-content-wrapper {
   transform: translateY(0);
-  transition: transform var(--modal-transition-duration) ease;
+  transition: transform var(--modal-transition-duration) ease-out;
 }
 
 .modal-content {
@@ -83,7 +83,7 @@ main .modal-content-container .modal-content-wrapper {
   margin-top: 2rem;
   padding: 0 27px;
   min-height: 300px;
-  max-height: calc(100vh - 200px - 2rem);
+  max-height: calc(100vh - 400px);
   overflow: hidden;
   overflow-y: auto;
 }
