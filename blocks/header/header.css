@@ -11,7 +11,7 @@ header .nav {
   display: none;
   font-family: var(--body-font-family);
   align-items: center;
-  padding: 0 20px;
+  padding: 20px;
   position: absolute;
   top: 0;
   z-index: 50;
@@ -26,6 +26,13 @@ header .nav.appear {
 }
 
 header .nav[aria-expanded='true'] {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  min-width: 100vw;
   min-height: 100vh;
   background-color: var(--white);
 }
@@ -38,7 +45,6 @@ header .nav-hamburger {
 }
 
 header .nav[aria-expanded='true'] .nav-hamburger {
-  width: 100vw;
   background-color: var(--white);
 }
 
@@ -100,8 +106,13 @@ header .nav[aria-expanded='true'] .nav-hamburger-icon::after {
 header .nav-sections {
   display: none;
   background-color: var(--white);
-  width: 100vw;
   height: 100vh;
+  max-height: calc(100vh - 46px);
+  overflow-y: auto;
+}
+
+header .nav-sections > .nav-section:last-child {
+  margin-bottom: 4rem;
 }
 
 header .nav-sections h2 {
@@ -112,13 +123,12 @@ header .nav-sections h2 {
 
 header .nav-sections ul {
   list-style: none;
-  width: calc(100% - 20px);
   padding-left: 0;
   margin: 0;
 } 
 
 header .nav-sections li {
-  padding: 10px 20px;
+  padding: 10px;
   font-size: 20px;
   font-weight: 700;
 }
@@ -272,6 +282,7 @@ header a.nav-item + .nav-section a.nav-item:any-link {
 }
 
 header a.nav-item + .nav-section li {
+  padding: 10px 0;
   font-weight: 400;
 }
 
@@ -296,6 +307,8 @@ header a.nav-item + .nav-section li {
 
   header .nav[aria-expanded='true'] {
     min-height: unset;
+    min-width: auto;
+    max-width: 280px;
   }
 
   header .nav[aria-expanded='false'] {
@@ -328,7 +341,8 @@ header a.nav-item + .nav-section li {
     display: block;
     width: unset;
     height: unset;
-    padding-bottom: 16px;
+    max-height: calc(100vh - 46px);
+    overflow-y: auto;
   }
 
   header .nav[aria-expanded='false'] .nav-sections {

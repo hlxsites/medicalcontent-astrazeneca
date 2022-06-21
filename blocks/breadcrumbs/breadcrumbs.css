@@ -5,7 +5,8 @@ main .section.breadcrumbs-container {
 
 main .breadcrumbs {
   font-family: var(--accent-font-family);
-  margin: 20px 0;
+  padding: 20px 0;
+  margin: 0;
 }
 
 main .breadcrumbs a:any-link {
@@ -23,7 +24,8 @@ main .breadcrumbs .breadcrumbs-separator::before {
 
 /* theme: study */
 .study main .breadcrumbs {
-  margin: 20px 46px;
+  padding: 20px 46px;
+  margin: 0;
 }
 
 @media (min-width: 900px) {
