@@ -1,4 +1,9 @@
 /* stylelint-disable property-no-vendor-prefix */
+
+.back-to-top {
+  padding: 45px 0;
+}
+
 .back-to-top > div > div {
   display: flex;
   justify-content: center;
