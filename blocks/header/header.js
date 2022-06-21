@@ -11,6 +11,21 @@ function collapseAllNavSections(sections) {
   });
 }
 
+/**
+ * @param {HTMLAnchorElement} link
+ */
+function expandParent(link) {
+  const parentNavSection = link.closest('.nav-section');
+  const parentLink = parentNavSection.parentElement?.querySelector(
+    ':scope > a.nav-item.has-subnav',
+  );
+  parentNavSection.setAttribute('aria-expanded', 'true');
+  if (parentLink) {
+    parentLink.classList.add('expanded');
+    expandParent(parentLink);
+  }
+}
+
 function createNavSection(list, navSections, parent = '') {
   const navSection = document.createElement('div');
   navSection.classList.add('nav-section');
@@ -20,7 +35,10 @@ function createNavSection(list, navSections, parent = '') {
     const safeTitle = toClassName(title.replace('&', 'and'));
     const link = document.createElement('a');
     link.classList.add('nav-item', `nav-item-${safeTitle}`);
-    const linkPrefix = window.location.pathname.split('/').filter((_, c) => c < 3).join('/');
+    const linkPrefix = window.location.pathname
+      .split('/')
+      .filter((_, c) => c < 3)
+      .join('/');
     link.href = `${linkPrefix}${parent || ''}/${safeTitle}`;
     if (!parent && i === 0) {
       // home link
@@ -35,13 +53,14 @@ function createNavSection(list, navSections, parent = '') {
 
     if (window.location.pathname === link.getAttribute('href')) {
       link.classList.add('nav-item-active');
-      if (parent) {
-        link.closest('.nav-section').setAttribute('aria-expanded', 'true');
-      }
     }
 
     const subNavSection = item.querySelector(':scope > ul')
-      && createNavSection(item.querySelector(':scope > ul'), navSections, `${parent}/${safeTitle}`);
+      && createNavSection(
+        item.querySelector(':scope > ul'),
+        navSections,
+        `${parent}/${safeTitle}`,
+      );
     if (subNavSection) {
       if (!subNavSection.hasAttribute('aria-expanded')) {
         subNavSection.setAttribute('aria-expanded', 'false');
@@ -52,18 +71,28 @@ function createNavSection(list, navSections, parent = '') {
       link.href = window.location.hash || '#';
     }
 
-    link.addEventListener('click', (evt) => {
-      const section = subNavSection || navSection;
-      const expanded = section.getAttribute('aria-expanded') === 'true';
-      if (!subNavSection) {
-        collapseAllNavSections(navSections);
-      } else {
-        evt.preventDefault();
-      }
-      section.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-    }, true);
+    link.addEventListener(
+      'click',
+      (evt) => {
+        const section = subNavSection || navSection;
+        const expanded = section.getAttribute('aria-expanded') === 'true';
+        if (!subNavSection) {
+          collapseAllNavSections(navSections);
+        } else {
+          evt.preventDefault();
+        }
+        section.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      },
+      true,
+    );
     item.firstChild.remove();
   });
+
+  const activeNavItem = navSection.querySelector('.nav-item-active');
+  if (activeNavItem) {
+    expandParent(activeNavItem);
+  }
+
   return navSection;
 }
 

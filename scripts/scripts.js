@@ -517,6 +517,22 @@ initHlx();
  * ------------------------------------------------------------
  */
 
+/**
+ * executes something as soon as the main thread is free
+ * @param {Function} cb
+ * @returns void
+ */
+export function requestIdleCallback(cb) {
+  return (window.requestIdleCallback || setTimeout)(cb);
+}
+
+/**
+* @param {string} str
+*/
+export function stringToHTML(str) {
+  return new DOMParser().parseFromString(str, 'text/html').body;
+}
+
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 const RUM_GENERATION = 'project-1'; // add your RUM generation information here
 const PRODUCTION_DOMAINS = ['medicalcontent.astrazeneca.com'];

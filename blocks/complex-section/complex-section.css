@@ -1,7 +1,0 @@
-.complex-section {
-  display: block;
-}
-
-.complex-section > div:not(:first-child) {
-  margin: 2.5em 0;
-}
